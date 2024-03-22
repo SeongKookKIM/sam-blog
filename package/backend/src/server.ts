@@ -1,6 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import cors from "cors";
+import dotenv from "dotenv";
+
+import passwordChecked from "./router/passwordChcked";
 
 const app = express();
 
@@ -10,10 +13,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+dotenv.config();
+
 app.listen("8080", () => {
   console.log(`
         #############################################
-        🛡️ Server listening on port: 8000 🛡️
+        🛡️ Server listening on port: 8080 🛡️
         #############################################  
     `);
 });
@@ -21,16 +26,14 @@ app.listen("8080", () => {
 // server-react connect
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get("/", function (req, res) {
+app.get("/", function (req: Request, res: Response) {
   console.log(req);
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-app.use("/", (req, res) => {
-  console.log(req.body);
-  return res.status(200).send("하이");
-});
+// Router
+app.use("/passwordChcked", passwordChecked);
 
-app.get("*", function (req, res) {
+app.get("*", function (req: Request, res: Response) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
