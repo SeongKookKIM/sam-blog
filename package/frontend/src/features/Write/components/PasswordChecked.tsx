@@ -1,16 +1,43 @@
 import { useEffect, useRef, useState } from "react";
-
 import { CheckedWrapper, PasswordCheckedForm } from "../style/PasswordChecked";
 import { Section } from "../../common/styles/Section";
 import { Input } from "../../common/styles/Input";
 import { Button } from "../../common/styles/Buttons";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import cookie from "react-cookies";
+
+// useMutation Password 타입 정의
+type TPasswordType = {
+  password: string;
+};
 
 function PasswordChecked() {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [password, setPassword] = useState<string>();
+  const [password, setPassword] = useState<string>("");
 
-  //   렌더시 비밀번호 입력창에 포커스
+  //   useMutation을 사용하여 POST요청 보내기
+  const mutation = useMutation({
+    mutationFn: (password: TPasswordType) => {
+      return axios
+        .post("http://localhost:8080/passwordChcked", password)
+        .then((res) => {
+          alert(res.data);
+          const expires = new Date();
+          expires.setMinutes(expires.getMinutes() + 60);
+          cookie.save("isLogin", "true", {
+            expires,
+            secure: true,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("비밀번호가 일치하지 않습니다.");
+        });
+    },
+  });
+
+  //   렌더링시 비밀번호 입력창에 포커스
   useEffect(() => {
     const inputFocus = inputRef.current;
     inputFocus!.focus();
@@ -19,22 +46,12 @@ function PasswordChecked() {
   //   비밀번호 입력시 비밀번호 체크
   const hadnlerForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formElement = e.target;
 
-    console.log(formElement);
-    console.log(password);
-
+    // 비밀번호 입력하지 않았을 시 경고창 - 비밀번호 입력시 POST요청
     if (password?.length === 0) {
       alert("비밀번호를 입력해주세요.");
     } else {
-      console.log("비밀번호 입력");
-
-      axios
-        .post("http://localhost:8080/passwordChcked", { password: password })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => console.log(err));
+      mutation.mutate({ password: password as string });
     }
   };
 
