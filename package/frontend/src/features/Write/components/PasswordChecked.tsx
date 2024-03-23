@@ -12,7 +12,12 @@ type TPasswordType = {
   password: string;
 };
 
-function PasswordChecked() {
+//
+interface IIsCheckedProps {
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean | null>>;
+}
+
+function PasswordChecked({ setIsChecked }: IIsCheckedProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [password, setPassword] = useState<string>("");
 
@@ -29,6 +34,7 @@ function PasswordChecked() {
             expires,
             secure: true,
           });
+          setIsChecked(true);
         })
         .catch((err) => {
           console.log(err);

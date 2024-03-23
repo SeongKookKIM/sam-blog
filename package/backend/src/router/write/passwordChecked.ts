@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { db } from "../utils/mongoData";
+import { db } from "../../utils/mongoData";
 
 let passwordChcked = express.Router();
 passwordChcked.use(express.json());

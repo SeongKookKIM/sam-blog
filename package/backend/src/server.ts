@@ -1,9 +1,9 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import passwordChecked from "./router/passwordChcked";
+import passwordChecked from "./router/write/passwordChecked";
 
 const app = express();
 

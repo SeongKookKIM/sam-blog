@@ -6,7 +6,6 @@ import cookie from "react-cookies";
 
 function Write() {
   const [isChecked, setIsChecked] = useState<boolean | null>(null);
-  console.log(setIsChecked);
 
   useEffect(() => {
     const isLogin = cookie.load("isLogin");
@@ -21,7 +20,7 @@ function Write() {
       </Section>
     );
   } else {
-    return <PasswordChecked />;
+    return <PasswordChecked setIsChecked={setIsChecked} />;
   }
 }
 
