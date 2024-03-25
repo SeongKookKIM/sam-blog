@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckedWrapper, PasswordCheckedForm } from "../style/PasswordChecked";
+import axios from "axios";
+import cookie from "react-cookies";
+import { useNavigate } from "react-router-dom";
+
 import { Section } from "../../../styles/Section";
 import { Input } from "../../../styles/Input";
 import { Button } from "../../../styles/Buttons";
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import cookie from "react-cookies";
 import { TPasswordType } from "../../../../../types/passwordType";
-import { useNavigate } from "react-router-dom";
 
 function PasswordChecked() {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -56,7 +57,7 @@ function PasswordChecked() {
       const inputFocus = inputRef.current;
       inputFocus!.focus();
     } else {
-      mutation.mutate({ password: password as string });
+      mutation.mutate({ password: password });
     }
   };
 
@@ -71,10 +72,12 @@ function PasswordChecked() {
           </span>
           <Input
             type="password"
+            name="password"
             autoComplete="username"
             ref={inputRef}
             width={"50%"}
             onChange={(e) => setPassword(e.target.value)}
+            data-testid="password-test"
           />
           <Button type="submit">입력</Button>
         </PasswordCheckedForm>
