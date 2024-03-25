@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Div, Nav } from "./style/TopNav";
+import { Div, Nav } from "../style/TopNav";
 
 function TopNav() {
   return (

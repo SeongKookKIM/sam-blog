@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Menu from "../../common/components/Menu/Menu";
-import TopNav from "../../common/components/TopNav/Topnav";
+import Menu from "../../common/components/Menu/container/Menu";
+import TopNav from "../../common/components/TopNav/container/Topnav";
 import { Content, Main } from "../style/App";
 import Home from "../../Home/container/Home";
 import Write from "../../Write/container/Write";

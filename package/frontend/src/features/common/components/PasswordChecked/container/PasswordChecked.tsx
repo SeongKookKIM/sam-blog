@@ -1,25 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckedWrapper, PasswordCheckedForm } from "../style/PasswordChecked";
-import { Section } from "../../common/styles/Section";
-import { Input } from "../../common/styles/Input";
-import { Button } from "../../common/styles/Buttons";
+import { Section } from "../../../styles/Section";
+import { Input } from "../../../styles/Input";
+import { Button } from "../../../styles/Buttons";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import cookie from "react-cookies";
+import { TPasswordType } from "../../../../../types/passwordType";
+import { useNavigate } from "react-router-dom";
 
-// useMutation Password 타입 정의
-type TPasswordType = {
-  password: string;
-};
-
-//
-interface IIsCheckedProps {
-  setIsChecked: React.Dispatch<React.SetStateAction<boolean | null>>;
-}
-
-function PasswordChecked({ setIsChecked }: IIsCheckedProps) {
+function PasswordChecked() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [password, setPassword] = useState<string>("");
+
+  const navigatge = useNavigate();
 
   //   useMutation을 사용하여 POST요청 보내기
   const mutation = useMutation({
@@ -27,14 +21,17 @@ function PasswordChecked({ setIsChecked }: IIsCheckedProps) {
       return axios
         .post("http://localhost:8080/passwordChcked", password)
         .then((res) => {
+          //비밀번호 확인 알림
           alert(res.data);
+          // 통과 시 isLogin 쿠키를 생성 후 true로 변경(작성,수정,삭제 통과)
           const expires = new Date();
           expires.setMinutes(expires.getMinutes() + 60);
-          cookie.save("isLogin", "true", {
+          cookie.save("isLogin", "pass", {
             expires,
             secure: true,
           });
-          setIsChecked(true);
+          // 새로고침
+          navigatge(0);
         })
         .catch((err) => {
           console.log(err);
@@ -56,6 +53,8 @@ function PasswordChecked({ setIsChecked }: IIsCheckedProps) {
     // 비밀번호 입력하지 않았을 시 경고창 - 비밀번호 입력시 POST요청
     if (password?.length === 0) {
       alert("비밀번호를 입력해주세요.");
+      const inputFocus = inputRef.current;
+      inputFocus!.focus();
     } else {
       mutation.mutate({ password: password as string });
     }
@@ -65,9 +64,10 @@ function PasswordChecked({ setIsChecked }: IIsCheckedProps) {
     <Section>
       <CheckedWrapper>
         <PasswordCheckedForm method="post" onSubmit={(e) => hadnlerForm(e)}>
-          <p>글 작성을 위해선 비밀번호를 입력하셔야 합니다.</p>
+          <p>글 작성 및 수정을 위해선 비밀번호를 입력하셔야 합니다.</p>
           <span>
-            * 비밀번호 입력 후 1시간동안 글 작성을 자유롭게 하실 수 있습니다.
+            * 비밀번호 입력 후 1시간동안 글 작성 및 수정을 자유롭게 하실 수
+            있습니다.
           </span>
           <Input
             type="password"

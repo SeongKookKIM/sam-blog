@@ -6,11 +6,11 @@ import {
   MenuTitle,
   MenuWrapper,
   Strong,
-} from "./style/Menu";
+} from "../style/Menu";
 
 import { Link } from "react-router-dom";
-import { TDummyData } from "../../../../types/dummyDataType";
-import { dummyData } from "../../../../utils/dummyData";
+import { TDummyData } from "../../../../../types/dummyDataType";
+import { dummyData } from "../../../../../utils/dummyData";
 
 function Menu() {
   const [data, setData] = useState<TDummyData[]>([]);
