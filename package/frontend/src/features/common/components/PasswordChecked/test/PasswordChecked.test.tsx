@@ -17,16 +17,21 @@ describe("패스워드 패스 테스트", () => {
   // Window.alert 모킹
   window.alert = jest.fn();
 
-  //   Password 입력시 통과 테스트
-  test("비밀번호가 제대로 입력되었을 때 POST 요청을 보내는지 확인", async () => {
-    // PasswordChecked.tsx 렌더링
-    render(
+  // PasswordChecked컴포넌트 렌더링
+  const renderPasswordChecked = () => {
+    return render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <PasswordChecked />
         </MemoryRouter>
       </QueryClientProvider>,
     );
+  };
+
+  //   Password 입력시 통과 테스트
+  test("비밀번호가 제대로 입력되었을 때 POST 요청을 보내는지 확인", async () => {
+    // Passwordchecked컴포넌트 렌더링 함수
+    renderPasswordChecked();
 
     // 패스워드 input, 입력 버튼 찾기
     const passwordInput = screen.getByTestId("password-test");
@@ -48,14 +53,9 @@ describe("패스워드 패스 테스트", () => {
       }),
     );
 
-    // PasswordChecked.tsx 렌더링
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <PasswordChecked />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
+    // Passwordchecked컴포넌트 렌더링 함수
+    renderPasswordChecked();
+
     // 패스워드 input, 입력 버튼 찾기
     const passwordInput = screen.getByTestId("password-test");
     const submitButton = screen.getByText("입력");
@@ -69,16 +69,10 @@ describe("패스워드 패스 테스트", () => {
 
   //   Input이 빈값일때 테스트
   test("비밀번호를 입력하지 않을경우 테스트", async () => {
-    // PasswordChecked.tsx 렌더링
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <PasswordChecked />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
+    // Passwordchecked컴포넌트 렌더링 함수
+    renderPasswordChecked();
 
-    //  입력 버튼 찾기
+    // 패스워드 input, 입력 버튼 찾기
     const submitButton = screen.getByText("입력");
 
     //input에 테스트 값이 없을 경우 버튼을 누르면 통과 하게 테스트
