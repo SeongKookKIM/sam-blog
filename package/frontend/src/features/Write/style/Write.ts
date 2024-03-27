@@ -8,9 +8,3 @@ export const WriteWrapper = styled.div`
     font-weight: bold;
   }
 `;
-
-export const PostAddForm = styled.form`
-  width: 100%;
-  border: 1px solid black;
-  margin-top: 50px;
-`;

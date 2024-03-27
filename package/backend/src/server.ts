@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import passwordChecked from "./router/write/passwordChecked";
+import addTitle from "./router/write/addTitle";
 
 const app = express();
 
@@ -32,7 +33,8 @@ app.get("/", function (req: Request, res: Response) {
 });
 
 // Router
-app.use("/passwordChcked", passwordChecked);
+app.use("/write/passwordChcked", passwordChecked);
+app.use("/write/addTitle", addTitle);
 
 app.get("*", function (req: Request, res: Response) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));

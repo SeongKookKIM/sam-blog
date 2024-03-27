@@ -5,4 +5,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   border-bottom: 1px solid black;
+  &:focus {
+    border-bottom: 2px solid black;
+  }
 `;
