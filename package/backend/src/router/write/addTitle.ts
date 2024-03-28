@@ -12,7 +12,7 @@ addTitle.post("/", async (req: Request, res: Response) => {
       { $push: { list: req.body.addTitle } }, // 업데이트할 내용
     );
 
-    return res.status(200).send("타이틀 저장성공");
+    return res.status(200).send("타이틀 저장!");
   } catch (err) {
     console.log(err);
     return res.status(200).json(err);

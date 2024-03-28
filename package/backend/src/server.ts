@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import passwordChecked from "./router/write/passwordChecked";
 import addTitle from "./router/write/addTitle";
+import postTitle from "./router/write/mainTitle";
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.listen("8080", () => {
+app.listen(process.env.PORT, () => {
   console.log(`
         #############################################
         🛡️ Server listening on port: 8080 🛡️
@@ -35,6 +36,7 @@ app.get("/", function (req: Request, res: Response) {
 // Router
 app.use("/write/passwordChcked", passwordChecked);
 app.use("/write/addTitle", addTitle);
+app.use("/write/postTitle", postTitle);
 
 app.get("*", function (req: Request, res: Response) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));

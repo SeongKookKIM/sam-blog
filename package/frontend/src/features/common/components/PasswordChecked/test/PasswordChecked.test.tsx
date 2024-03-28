@@ -47,10 +47,13 @@ describe("패스워드 패스 테스트", () => {
   //   password 틀렸을 경우 테스트
   test("비밀번호가 틀렸을떄 에러 테스트", async () => {
     server.use(
-      rest.post("http://localhost:8080/passwordChcked", (req, res, ctx) => {
-        console.log(req);
-        return res(ctx.status(500));
-      }),
+      rest.post(
+        "http://localhost:8080/write/passwordChcked",
+        (req, res, ctx) => {
+          console.log(req);
+          return res(ctx.status(500));
+        },
+      ),
     );
 
     // Passwordchecked컴포넌트 렌더링 함수

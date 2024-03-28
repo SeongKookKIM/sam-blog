@@ -10,8 +10,8 @@ import {
 } from "../style/AddPostForm";
 import { Input } from "../../common/styles/Input";
 import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { TTitleListType } from "../../../types/titleListType";
+import { useFetchQuery } from "../../../hooks/useQuery";
+import { useCallback } from "react";
 
 type FormValues = {
   title: string;
@@ -22,8 +22,11 @@ type FormValues = {
 };
 
 function AddPostForm() {
-  // const [mainTitleList,setMainTitleList] = useState<TTitleListType>([])
-  //   useQuery로 데이터 가져오기
+  //   useQuery로 타이틀 데이터 가져오기
+  const { data, isLoading, isError, error } = useFetchQuery(
+    "title",
+    "http://localhost:8080/write/postTitle",
+  );
 
   // react-hook-form
   const {
@@ -47,24 +50,32 @@ function AddPostForm() {
   };
 
   //   (메인,서브)타이틀 버튼 클릭시 DB 추가
-  const onClickAddMainTitle = (title: string) => {
-    const addTitle: string | undefined =
-      title === "mainTitle" ? addMainTitleText : addSubTitleText;
-    if (title !== "") {
-      axios
-        .post("http://localhost:8080/write/addTitle", {
-          titleName: title,
-          addTitle: addTitle,
-        })
-        .then((res) => {
-          console.log(res.data);
-          reset({ mainTitleAdd: "", subTitleAdd: "" });
-        })
-        .catch((err) => console.log(err));
-    } else {
-      alert("타이틀을 등록해주세요.");
-    }
-  };
+  const onClickAddMainTitle = useCallback(
+    (title: string) => {
+      const addTitle: string | undefined =
+        title === "mainTitle" ? addMainTitleText : addSubTitleText;
+      if (title !== "") {
+        axios
+          .post("http://localhost:8080/write/addTitle", {
+            titleName: title,
+            addTitle: addTitle,
+          })
+          .then((res) => {
+            console.log(res.data);
+            reset({ mainTitleAdd: "", subTitleAdd: "" });
+          })
+          .catch((err) => console.log(err));
+      } else {
+        alert("타이틀을 등록해주세요.");
+      }
+    },
+    [addMainTitleText, addSubTitleText],
+  );
+
+  // useQuery 로딩 시
+  if (isLoading) return <>Loading...</>;
+  // useQuery 에러 시
+  if (isError) return <>{error.message}</>;
 
   return (
     <PostForm onSubmit={handleSubmit(formSubmit)}>
@@ -103,7 +114,17 @@ function AddPostForm() {
             <option value="" disabled hidden>
               선택
             </option>
-            <option value="123">1231412412412314124124</option>
+            {data?.data[0].list.length > 0 && (
+              <>
+                {data?.data[0].list.map((main: string[], idx: number) => {
+                  return (
+                    <option value={main} key={idx}>
+                      {main}
+                    </option>
+                  );
+                })}
+              </>
+            )}
           </Select>
           <div>
             <Input
@@ -150,7 +171,17 @@ function AddPostForm() {
             <option value="" disabled hidden>
               선택
             </option>
-            <option value="123">1231412412412314124124</option>
+            {data?.data[1].list.length > 0 && (
+              <>
+                {data?.data[1].list.map((sub: string[], idx: number) => {
+                  return (
+                    <option value={sub} key={idx}>
+                      {sub}
+                    </option>
+                  );
+                })}
+              </>
+            )}
           </Select>
           <div>
             <Input
