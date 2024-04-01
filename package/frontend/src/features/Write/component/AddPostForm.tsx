@@ -59,40 +59,36 @@ function AddPostForm() {
     console.log(date);
   };
 
-  //   (메인,서브)타이틀 버튼 클릭시 DB 추가
+  //   (메인,서브)타이틀 버튼 클릭시 State에 추가
   const onClickAddMainTitle = useCallback(
     (title: string) => {
-      console.log(title);
-      reset({ mainTitleAdd: "", subTitleAdd: "" });
+      const mainTitleList = mainTitle;
+      mainTitleList?.push(addMainTitleText as string);
 
-      if (title !== "") {
-        // title이 mainTitle 일때 setMainTitle에 저장
-        // title이 subTitle 일때 setSubTitle에 저장
+      const subTitleList = subTitle;
+      subTitleList?.push(addSubTitleText as string);
+
+      if (addMainTitleText === "" && addSubTitleText === "") {
+        alert("타이틀을 입력해주세요.");
       } else {
-        alert("타이틀을 등록해주세요.");
+        switch (title) {
+          case "mainTitle":
+            setMainTitle(mainTitleList);
+            reset({ mainTitleAdd: "" });
+            break;
+          case "subTitle":
+            setSubTitle(subTitleList);
+            reset({ subTitleAdd: "" });
+            break;
+        }
       }
-      // const addTitle: string | undefined =
-      //   title === "mainTitle" ? addMainTitleText : addSubTitleText;
-      // if (title !== "") {
-      //   axios
-      //     .post("http://localhost:8080/write/addTitle", {
-      //       titleName: title,
-      //       addTitle: addTitle,
-      //     })
-      //     .then((res) => {
-      //       console.log(res.data);
-      //       reset({ mainTitleAdd: "", subTitleAdd: "" });
-      //     })
-      //     .catch((err) => console.log(err));
-      // } else {
-      //   alert("타이틀을 등록해주세요.");
-      // }
     },
     [addMainTitleText, addSubTitleText],
   );
 
   // useQuery 로딩 시
   if (isLoading) return <>Loading...</>;
+
   // useQuery 에러 시
   if (isError) return <>{error.message}</>;
 
