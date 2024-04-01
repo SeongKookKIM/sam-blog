@@ -5,6 +5,5 @@ export const useFetchQuery = (nickName: string, api: string) => {
   return useQuery({
     queryKey: [nickName],
     queryFn: () => axios.get(api),
-    // refetchInterval: 1000,
   });
 };

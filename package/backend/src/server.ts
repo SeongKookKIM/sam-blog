@@ -4,8 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import passwordChecked from "./router/write/passwordChecked";
-import addTitle from "./router/write/addTitle";
-import postTitle from "./router/write/mainTitle";
+// import addTitle from "./router/write/addTitle";
+import postTitle from "./router/write/postTitle";
 
 const app = express();
 
@@ -35,7 +35,7 @@ app.get("/", function (req: Request, res: Response) {
 
 // Router
 app.use("/write/passwordChcked", passwordChecked);
-app.use("/write/addTitle", addTitle);
+// app.use("/write/addTitle", addTitle);
 app.use("/write/postTitle", postTitle);
 
 app.get("*", function (req: Request, res: Response) {

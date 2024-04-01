@@ -9,9 +9,9 @@ import {
   Select,
 } from "../style/AddPostForm";
 import { Input } from "../../common/styles/Input";
-import axios from "axios";
 import { useFetchQuery } from "../../../hooks/useQuery";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+// import axios from "axios";
 
 type FormValues = {
   title: string;
@@ -27,6 +27,16 @@ function AddPostForm() {
     "title",
     "http://localhost:8080/write/postTitle",
   );
+
+  // Title List State
+  const [mainTitle, setMainTitle] = useState<string[] | undefined>([]);
+  const [subTitle, setSubTitle] = useState<string[] | undefined>([]);
+
+  // Title List에
+  useEffect(() => {
+    setMainTitle(data?.data[0].list);
+    setSubTitle(data?.data[1].list);
+  }, [data]);
 
   // react-hook-form
   const {
@@ -52,22 +62,31 @@ function AddPostForm() {
   //   (메인,서브)타이틀 버튼 클릭시 DB 추가
   const onClickAddMainTitle = useCallback(
     (title: string) => {
-      const addTitle: string | undefined =
-        title === "mainTitle" ? addMainTitleText : addSubTitleText;
+      console.log(title);
+      reset({ mainTitleAdd: "", subTitleAdd: "" });
+
       if (title !== "") {
-        axios
-          .post("http://localhost:8080/write/addTitle", {
-            titleName: title,
-            addTitle: addTitle,
-          })
-          .then((res) => {
-            console.log(res.data);
-            reset({ mainTitleAdd: "", subTitleAdd: "" });
-          })
-          .catch((err) => console.log(err));
+        // title이 mainTitle 일때 setMainTitle에 저장
+        // title이 subTitle 일때 setSubTitle에 저장
       } else {
         alert("타이틀을 등록해주세요.");
       }
+      // const addTitle: string | undefined =
+      //   title === "mainTitle" ? addMainTitleText : addSubTitleText;
+      // if (title !== "") {
+      //   axios
+      //     .post("http://localhost:8080/write/addTitle", {
+      //       titleName: title,
+      //       addTitle: addTitle,
+      //     })
+      //     .then((res) => {
+      //       console.log(res.data);
+      //       reset({ mainTitleAdd: "", subTitleAdd: "" });
+      //     })
+      //     .catch((err) => console.log(err));
+      // } else {
+      //   alert("타이틀을 등록해주세요.");
+      // }
     },
     [addMainTitleText, addSubTitleText],
   );
@@ -114,17 +133,13 @@ function AddPostForm() {
             <option value="" disabled hidden>
               선택
             </option>
-            {data?.data[0].list.length > 0 && (
-              <>
-                {data?.data[0].list.map((main: string[], idx: number) => {
-                  return (
-                    <option value={main} key={idx}>
-                      {main}
-                    </option>
-                  );
-                })}
-              </>
-            )}
+            {mainTitle?.map((main: string, idx: number) => {
+              return (
+                <option value={main} key={idx}>
+                  {main}
+                </option>
+              );
+            })}
           </Select>
           <div>
             <Input
@@ -171,17 +186,13 @@ function AddPostForm() {
             <option value="" disabled hidden>
               선택
             </option>
-            {data?.data[1].list.length > 0 && (
-              <>
-                {data?.data[1].list.map((sub: string[], idx: number) => {
-                  return (
-                    <option value={sub} key={idx}>
-                      {sub}
-                    </option>
-                  );
-                })}
-              </>
-            )}
+            {subTitle?.map((sub: string, idx: number) => {
+              return (
+                <option value={sub} key={idx}>
+                  {sub}
+                </option>
+              );
+            })}
           </Select>
           <div>
             <Input
