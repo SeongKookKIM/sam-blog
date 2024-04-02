@@ -42,6 +42,7 @@ function Editor({ content, setContent }: IContentProps) {
       }
     });
   };
+  console.log(imageHandler);
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
