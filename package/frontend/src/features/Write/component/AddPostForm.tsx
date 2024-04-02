@@ -11,6 +11,8 @@ import {
 import { Input } from "../../common/styles/Input";
 import { useFetchQuery } from "../../../hooks/useQuery";
 import { useCallback, useEffect, useState } from "react";
+import Editor from "../../common/components/Editor/container/Editor";
+import { Button } from "../../common/styles/Buttons";
 // import axios from "axios";
 
 type FormValues = {
@@ -31,6 +33,8 @@ function AddPostForm() {
   // Title List State
   const [mainTitle, setMainTitle] = useState<string[] | undefined>([]);
   const [subTitle, setSubTitle] = useState<string[] | undefined>([]);
+  // Editor Content
+  const [content, setContent] = useState<string>("");
 
   // Title List에
   useEffect(() => {
@@ -57,6 +61,7 @@ function AddPostForm() {
     // 날짜 추가
     const date = new Date().getTime();
     console.log(date);
+    console.log(content);
   };
 
   //   (메인,서브)타이틀 버튼 클릭시 State에 추가
@@ -218,9 +223,23 @@ function AddPostForm() {
       </InputWrapper>
       {/* react-quill 에디터 */}
       {/* firebase 사용해서 이미지 업로드 하기 */}
-      <button type="submit" disabled={isSubmitting}>
+      <Editor content={content} setContent={setContent} />
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        style={{
+          backgroundColor: "#96ccfe",
+          color: "white",
+          border: "none",
+          maxWidth: "200px",
+          width: "100%",
+          margin: "0 auto",
+          borderRadius: "10px",
+          fontWeight: "700",
+        }}
+      >
         추가
-      </button>
+      </Button>
     </PostForm>
   );
 }

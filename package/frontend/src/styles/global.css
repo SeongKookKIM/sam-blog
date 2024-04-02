@@ -6,3 +6,24 @@ textarea,
 button {
   font-family: "Noto Sans KR", sans-serif;
 }
+
+/* react-quill 에디터 높이 */
+.ql-editor {
+  min-height: 500px;
+}
+.ql-editor > p {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+.ql-editor > p > code {
+  background-color: #3c3c3c !important;
+  color: white !important;
+  border-radius: 0 !important;
+}
+.ql-editor.ql-blank::before {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: "Noto Sans KR", sans-serif !important;
+  font-style: normal !important;
+}
