@@ -63,20 +63,20 @@ function AddPostForm() {
   const onClickAddMainTitle = useCallback(
     (title: string) => {
       const mainTitleList = mainTitle;
-      mainTitleList?.push(addMainTitleText as string);
 
       const subTitleList = subTitle;
-      subTitleList?.push(addSubTitleText as string);
 
       if (addMainTitleText === "" && addSubTitleText === "") {
         alert("타이틀을 입력해주세요.");
       } else {
         switch (title) {
           case "mainTitle":
+            mainTitleList?.push(addMainTitleText as string);
             setMainTitle(mainTitleList);
             reset({ mainTitleAdd: "" });
             break;
           case "subTitle":
+            subTitleList?.push(addSubTitleText as string);
             setSubTitle(subTitleList);
             reset({ subTitleAdd: "" });
             break;
