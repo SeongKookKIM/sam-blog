@@ -1,12 +1,10 @@
 import { useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-
 import { PostContentWrapper } from "../style/Editor";
 import styles from "../style/editor.module.css";
-
-import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../../../../../utils/firebase";
+import AWS from "aws-sdk";
+// import axios from "axios";
 
 interface IContentProps {
   content: string;
@@ -15,34 +13,48 @@ interface IContentProps {
 
 function Editor({ content, setContent }: IContentProps) {
   const quillRef = useRef<ReactQuill | null>(null);
-
-  const imageHandler = () => {
+  // @@@@@@@@@@@@@@@@@@@@
+  const imageHandler = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
     input.click();
     input.addEventListener("change", async () => {
-      const editor = quillRef.current!.getEditor();
+      //이미지를 담아 전송할 file을 만든다
       const file = input.files?.[0];
-      const range = editor?.getSelection(true);
       try {
-        // 파일명을 "image/Date.now()"로 저장
-        const storageRef = ref(storage, `image/${Date.now()}`);
-        // Firebase Method : uploadBytes, getDownloadURL
-        await uploadBytes(storageRef, file as File).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            // 이미지 URL 에디터에 삽입
-            editor?.insertEmbed(range!.index, "image", url);
-            // URL 삽입 후 커서를 이미지 뒷 칸으로 이동
-            editor?.setSelection(range.index + 1, 0);
-          });
+        //업로드할 파일의 이름으로 Date 사용
+        const name = Date.now();
+        //생성한 s3 관련 설정들
+        AWS.config.update({
+          region: import.meta.env.VITE_AWS_S3_BUCKET_REGION,
+          accessKeyId: import.meta.env.VITE_AWS_S3_BUCKET_ACCESS_KEY_ID,
+          secretAccessKey: import.meta.env.VITE_AWS_S3_BUCKET_SECRET_ACCESS_KEY,
         });
+        //앞서 생성한 file을 담아 s3에 업로드하는 객체를 만든다
+        const upload = new AWS.S3.ManagedUpload({
+          params: {
+            Bucket: "sam-blog-image", //버킷 이름
+            Key: `upload/${name}`,
+            Body: file,
+          },
+        });
+        //이미지 업로드 후
+        //곧바로 업로드 된 이미지 url을 가져오기
+        const IMG_URL = await upload.promise().then((res) => res.Location);
+        //useRef를 사용해 에디터에 접근한 후
+        //에디터의 현재 커서 위치에 이미지 삽입
+        const editor = quillRef.current!.getEditor();
+        const range = editor.getSelection();
+        // 가져온 위치에 이미지를 삽입한다
+        editor.insertEmbed(range!.index, "image", IMG_URL);
+        editor.setSelection(range!.index + 1, 0);
       } catch (error) {
         console.log(error);
       }
     });
   };
-  console.log(imageHandler);
+  // @@@@@@@@@@@@@@@@@@@@
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
@@ -57,6 +69,9 @@ function Editor({ content, setContent }: IContentProps) {
           [{ color: [] }, { background: [] }],
           [{ align: [] }, "link", "image"],
         ],
+        handlers: {
+          image: imageHandler,
+        },
       },
     };
   }, []);
