@@ -1,10 +1,15 @@
 import { useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import { PostContentWrapper } from "../style/Editor";
 import styles from "../style/editor.module.css";
 import AWS from "aws-sdk";
-// import axios from "axios";
+
+// react-quill Image Resizing
+import { ImageActions } from "@xeger/quill-image-actions";
+import { ImageFormats } from "@xeger/quill-image-formats";
+Quill.register("modules/imageActions", ImageActions);
+Quill.register("modules/imageFormats", ImageFormats);
 
 interface IContentProps {
   content: string;
@@ -13,7 +18,8 @@ interface IContentProps {
 
 function Editor({ content, setContent }: IContentProps) {
   const quillRef = useRef<ReactQuill | null>(null);
-  // @@@@@@@@@@@@@@@@@@@@
+
+  // 이미지 AWS S3 저장
   const imageHandler = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -54,23 +60,33 @@ function Editor({ content, setContent }: IContentProps) {
       }
     });
   };
-  // @@@@@@@@@@@@@@@@@@@@
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
     return {
+      imageActions: {},
+      imageFormats: {},
       toolbar: {
         container: [
           [{ header: [1, 2, 3, false] }],
           ["bold", "italic", "underline", "strike"],
           ["blockquote", "code"],
-          [{ list: "ordered" }, { list: "bullet" }],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+            { indent: "+1" },
+            { indent: "-1" },
+          ],
           [{ color: [] }, { background: [] }],
           [{ align: [] }, "link", "image"],
         ],
         handlers: {
           image: imageHandler,
+        },
+        // 이미지 크기 조절
+        ImageResize: {
+          modules: ["Resize"],
         },
       },
     };
@@ -86,6 +102,25 @@ function Editor({ content, setContent }: IContentProps) {
         value={content}
         onChange={setContent}
         modules={modules}
+        formats={[
+          "header",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+          "align",
+          "color",
+          "background",
+          "float",
+          "height",
+          "width",
+        ]}
       />
     </PostContentWrapper>
   );
