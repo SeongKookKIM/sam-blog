@@ -13,6 +13,9 @@ import { useFetchQuery } from "../../../hooks/useQuery";
 import { useCallback, useEffect, useState } from "react";
 import Editor from "../../common/components/Editor/container/Editor";
 import { Button } from "../../common/styles/Buttons";
+import axios from "axios";
+import { TPostType } from "../../../types/postType";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 type FormValues = {
@@ -36,6 +39,8 @@ function AddPostForm() {
   // Editor Content
   const [content, setContent] = useState<string>("");
 
+  const navigater = useNavigate();
+
   // Title List에
   useEffect(() => {
     setMainTitle(data?.data[0].list);
@@ -54,15 +59,6 @@ function AddPostForm() {
   //   메인 타이틀 추가 텍스트
   const addMainTitleText = watch("mainTitleAdd", "");
   const addSubTitleText = watch("subTitleAdd", "");
-
-  // PostAdd Submit시 데이터 보내기
-  const formSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-    // 날짜 추가
-    const date = new Date().getTime();
-    console.log(date);
-    console.log(content);
-  };
 
   //   (메인,서브)타이틀 버튼 클릭시 State에 추가
   const onClickAddMainTitle = useCallback(
@@ -90,6 +86,49 @@ function AddPostForm() {
     },
     [addMainTitleText, addSubTitleText],
   );
+
+  // PostAdd Submit시 데이터 보내기
+  const formSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+    // 날짜 추가
+    const date = new Date().getTime();
+    console.log(date);
+    console.log(content);
+
+    if (content === "") {
+      alert("내용을 입력해주세요.");
+    } else {
+      // 타이틀 데이터
+      const titleData = {
+        main: mainTitle,
+        sub: subTitle,
+      };
+      // Post데이터
+      const postData: TPostType = {
+        title: data.title,
+        date: date,
+        mainTitle: data.mainTitle,
+        subTitle: data.subTitle,
+        content: content,
+      };
+
+      // 1.타이틀 추가
+      axios
+        .post("http://localhost:8080/write/addTitle", titleData)
+        .then((res) => {
+          console.log(res.data);
+          // 2.포스터 추가
+          axios
+            .post("http://localhost:8080/write/addPost", postData)
+            .then((res) => {
+              alert(res.data);
+              navigater("/");
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   // useQuery 로딩 시
   if (isLoading) return <>Loading...</>;
