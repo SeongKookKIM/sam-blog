@@ -1,17 +1,21 @@
-import { TDummyData } from "../../../types/dummyDataType";
+import { TPostType } from "../../../types/postType";
 import { List } from "../style/HomePostList";
 
 interface IDataProps {
-  data: TDummyData;
+  post: TPostType;
 }
 
 // Home 데이터 리스트 목록 컴포넌트
-function HomePostList({ data }: IDataProps) {
-  const date: string = new Date(data.date).toLocaleDateString();
+function HomePostList({ post }: IDataProps) {
+  const date: string = new Date(post.date).toLocaleDateString();
+  console.log(post);
   return (
     <List>
-      <p>{data.title}</p>
-      <span>{date}</span>
+      <p>{post.title}</p>
+      <div>
+        <span>{post.subSubject}</span>
+        <span>{date}</span>
+      </div>
     </List>
   );
 }

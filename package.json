@@ -5,10 +5,18 @@
       "package/*"
     ]
   },
+  "scripts": {
+    "server": "cd package && cd backend && yarn server",
+    "dev": "cd package && cd frontend && yarn dev",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn dev\""
+  },
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }

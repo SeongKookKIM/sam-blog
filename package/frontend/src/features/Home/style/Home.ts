@@ -13,6 +13,6 @@ export const HomePost = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  gap: 20px;
+  gap: 40px;
   cursor: pointer;
 `;

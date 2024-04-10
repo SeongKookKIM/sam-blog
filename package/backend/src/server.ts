@@ -7,6 +7,8 @@ import passwordChecked from "./router/write/passwordChecked";
 import postTitle from "./router/write/postTitle";
 import addPost from "./router/write/addPost";
 import addTitle from "./router/write/addTitle";
+import subjectCount from "./router/menu/subjectCount";
+import postList from "./router/home/postList";
 
 const app = express();
 
@@ -39,6 +41,8 @@ app.use("/write/passwordChcked", passwordChecked);
 app.use("/write/postTitle", postTitle);
 app.use("/write/addPost", addPost);
 app.use("/write/addTitle", addTitle);
+app.use("/menu/subjectCount", subjectCount);
+app.use("/home/postList", postList);
 
 app.get("*", function (req: Request, res: Response) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));

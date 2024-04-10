@@ -32,6 +32,8 @@ export const MenuList = styled.div`
   width: 100%;
   font-size: 20px;
   color: white;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MenuListUl = styled.ul`
@@ -47,27 +49,6 @@ export const Strong = styled.strong`
   gap: 10px;
   cursor: pointer;
   span {
-    font-size: 10px;
-  }
-`;
-
-export const MenuListOl = styled.ol`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: ${(props) => (props.className !== "selected" ? "0" : "10px 0")};
-  overflow: ${(props) =>
-    props.className !== "selected" ? "hidden" : "visible"};
-  height: ${(props) => (props.className !== "selected" ? "0" : "auto")};
-  transition: 0.5s;
-  li {
-    cursor: pointer;
-    p {
-      font-size: 16px;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+    font-size: 16px;
   }
 `;

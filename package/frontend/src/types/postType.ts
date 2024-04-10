@@ -1,7 +1,7 @@
 export type TPostType = {
   title: string;
   date: number;
-  mainTitle: string;
-  subTitle: string;
+  subject: string;
+  subSubject: string;
   content: string;
 };

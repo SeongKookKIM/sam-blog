@@ -20,31 +20,29 @@ import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   title: string;
-  mainTitle: string;
-  mainTitleAdd?: string;
-  subTitle: string;
-  subTitleAdd?: string;
+  subject: string;
+  addSubject: string;
+  subSubject: string;
 };
 
 function AddPostForm() {
-  //   useQuery로 타이틀 데이터 가져오기
+  //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
-    "title",
+    "subject",
     "http://localhost:8080/write/postTitle",
   );
 
-  // Title List State
-  const [mainTitle, setMainTitle] = useState<string[] | undefined>([]);
-  const [subTitle, setSubTitle] = useState<string[] | undefined>([]);
+  // Subject List State
+  const [subject, setSubject] = useState<string[] | undefined>([]);
+
   // Editor Content
   const [content, setContent] = useState<string>("");
 
   const navigater = useNavigate();
 
-  // Title List에
+  // Subject List에 추가
   useEffect(() => {
-    setMainTitle(data?.data[0].list);
-    setSubTitle(data?.data[1].list);
+    setSubject(data?.data[0].subjectList);
   }, [data]);
 
   // react-hook-form
@@ -57,64 +55,53 @@ function AddPostForm() {
   } = useForm<FormValues>();
 
   //   메인 타이틀 추가 텍스트
-  const addMainTitleText = watch("mainTitleAdd", "");
-  const addSubTitleText = watch("subTitleAdd", "");
+  const addSubjectText = watch("addSubject", "");
 
-  //   (메인,서브)타이틀 버튼 클릭시 State에 추가
+  //   (메인)타이틀 버튼 클릭시 State에 추가
   const onClickAddMainTitle = useCallback(
-    (title: string) => {
-      const mainTitleList = mainTitle;
+    (addSubject: string) => {
+      const subjectList = subject;
 
-      const subTitleList = subTitle;
-
-      if (addMainTitleText === "" && addSubTitleText === "") {
+      if (addSubjectText === "") {
         alert("타이틀을 입력해주세요.");
       } else {
-        switch (title) {
-          case "mainTitle":
-            mainTitleList?.push(addMainTitleText as string);
-            setMainTitle(mainTitleList);
-            reset({ mainTitleAdd: "" });
-            break;
-          case "subTitle":
-            subTitleList?.push(addSubTitleText as string);
-            setSubTitle(subTitleList);
-            reset({ subTitleAdd: "" });
+        switch (addSubject) {
+          case "subject":
+            subjectList?.push(addSubjectText as string);
+            setSubject(subjectList);
+            reset({ addSubject: "" });
             break;
         }
       }
     },
-    [addMainTitleText, addSubTitleText],
+    [addSubjectText],
   );
 
   // PostAdd Submit시 데이터 보내기
   const formSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
     // 날짜 추가
     const date = new Date().getTime();
-    console.log(date);
-    console.log(content);
 
+    // 컨텐츠 빈문자열일 경우 alert
     if (content === "") {
       alert("내용을 입력해주세요.");
     } else {
-      // 타이틀 데이터
-      const titleData = {
-        main: mainTitle,
-        sub: subTitle,
+      // 주제 데이터
+      const subjectData = {
+        subjectList: subject,
       };
       // Post데이터
       const postData: TPostType = {
         title: data.title,
         date: date,
-        mainTitle: data.mainTitle,
-        subTitle: data.subTitle,
+        subject: data.subject,
+        subSubject: data.subSubject,
         content: content,
       };
 
-      // 1.타이틀 추가
+      // 1.주제 추가
       axios
-        .post("http://localhost:8080/write/addTitle", titleData)
+        .post("http://localhost:8080/write/addTitle", subjectData)
         .then((res) => {
           console.log(res.data);
           // 2.포스터 추가
@@ -123,6 +110,9 @@ function AddPostForm() {
             .then((res) => {
               alert(res.data);
               navigater("/");
+              setTimeout(() => {
+                navigater(0);
+              }, 100);
             })
             .catch((err) => console.log(err));
         })
@@ -157,15 +147,15 @@ function AddPostForm() {
         )}
       </InputWrapper>
 
-      {/* 메인타이틀 */}
+      {/* 주제 */}
       <InputWrapper className="post-add-mainTilte">
-        <Label>메인 타이틀</Label>
+        <Label>메인 주제</Label>
         <MainTitleWrapper>
           <Select
             aria-invalid={
-              isSubmitted ? (errors.mainTitle ? "true" : "false") : undefined
+              isSubmitted ? (errors.subject ? "true" : "false") : undefined
             }
-            {...register("mainTitle", {
+            {...register("subject", {
               required: "* 필수 입력란입니다.",
             })}
             defaultValue={""}
@@ -173,10 +163,10 @@ function AddPostForm() {
             <option value="" disabled hidden>
               선택
             </option>
-            {mainTitle?.map((main: string, idx: number) => {
+            {subject?.map((subject, idx: number) => {
               return (
-                <option value={main} key={idx}>
-                  {main}
+                <option value={subject} key={idx}>
+                  {subject}
                 </option>
               );
             })}
@@ -185,83 +175,47 @@ function AddPostForm() {
             <Input
               width={"200px"}
               type="text"
-              placeholder="메인 타이틀을 등록해주세요."
+              placeholder="메인 주제를 등록해주세요."
               aria-invalid={
-                isSubmitted
-                  ? errors.mainTitleAdd
-                    ? "true"
-                    : "false"
-                  : undefined
+                isSubmitted ? (errors.addSubject ? "true" : "false") : undefined
               }
-              {...register("mainTitleAdd")}
+              {...register("addSubject")}
             />
             <AddBtn
               type="button"
-              onClick={() => onClickAddMainTitle("mainTitle")}
+              onClick={() => onClickAddMainTitle("subject")}
             >
               추가하기
             </AddBtn>
           </div>
         </MainTitleWrapper>
-        {errors.mainTitle && (
+        {errors.subject && (
+          <Alert className="alert">{errors.subject.message?.toString()}</Alert>
+        )}
+      </InputWrapper>
+
+      {/* 서브 주제 */}
+      <InputWrapper className="post-add-title">
+        <Label>서브 주제</Label>
+        <Input
+          width={"300px"}
+          type="text"
+          placeholder="서브주제를 입력해주세요."
+          aria-invalid={
+            isSubmitted ? (errors.subSubject ? "true" : "false") : undefined
+          }
+          {...register("subSubject", {
+            required: "* 필수 입력란입니다.",
+          })}
+        />
+        {errors.subSubject && (
           <Alert className="alert">
-            {errors.mainTitle.message?.toString()}
+            {errors.subSubject.message?.toString()}
           </Alert>
         )}
       </InputWrapper>
 
-      {/* 서브타이틀 */}
-      <InputWrapper className="post-add-mainTilte">
-        <Label>서브 타이틀</Label>
-        <MainTitleWrapper>
-          <Select
-            aria-invalid={
-              isSubmitted ? (errors.subTitle ? "true" : "false") : undefined
-            }
-            {...register("subTitle", {
-              required: "* 필수 입력란입니다.",
-            })}
-            defaultValue={""}
-          >
-            <option value="" disabled hidden>
-              선택
-            </option>
-            {subTitle?.map((sub: string, idx: number) => {
-              return (
-                <option value={sub} key={idx}>
-                  {sub}
-                </option>
-              );
-            })}
-          </Select>
-          <div>
-            <Input
-              width={"200px"}
-              type="text"
-              placeholder="서브 타이틀을 등록해주세요."
-              aria-invalid={
-                isSubmitted
-                  ? errors.subTitleAdd
-                    ? "true"
-                    : "false"
-                  : undefined
-              }
-              {...register("subTitleAdd")}
-            />
-            <AddBtn
-              type="button"
-              onClick={() => onClickAddMainTitle("subTitle")}
-            >
-              추가하기
-            </AddBtn>
-          </div>
-        </MainTitleWrapper>
-        {errors.subTitle && (
-          <Alert className="alert">{errors.subTitle.message?.toString()}</Alert>
-        )}
-      </InputWrapper>
       {/* react-quill 에디터 */}
-      {/* firebase 사용해서 이미지 업로드 하기 */}
       <Editor content={content} setContent={setContent} />
       <Button
         type="submit"

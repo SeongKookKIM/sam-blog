@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   MenuList,
-  MenuListOl,
   MenuListUl,
   MenuTitle,
   MenuWrapper,
@@ -9,22 +8,54 @@ import {
 } from "../style/Menu";
 
 import { Link } from "react-router-dom";
-import { TDummyData } from "../../../../../types/dummyDataType";
-import { dummyData } from "../../../../../utils/dummyData";
+import { useFetchQuery } from "../../../../../hooks/useQuery";
+import axios from "axios";
 
 function Menu() {
-  const [data, setData] = useState<TDummyData[]>([]);
-  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  //   useQuery로 Subject 데이터 가져오기
+  const { data, isLoading, isError, error } = useFetchQuery(
+    "title",
+    "http://localhost:8080/write/postTitle",
+  );
+
+  // Subject State
+  const [subjectList, setSubjectList] = useState<string[]>([]);
+  const [subjectCounts, setSubjectCounts] = useState<{
+    [subject: string]: number;
+  }>({});
 
   // 레더링시 data 불러오기
   useEffect(() => {
-    setData(dummyData);
-  }, []);
+    // Subject 카운트 함수
+    const fetchSubjectCounts = async () => {
+      const counts: { [subject: string]: number } = {};
+      for (const subject of data?.data[0].subjectList || []) {
+        try {
+          const response = await axios.post(
+            "http://localhost:8080/menu/subjectCount",
+            {
+              subjectName: subject,
+            },
+          );
+          counts[subject] = response.data;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      setSubjectCounts(counts);
+    };
+    // 데이터 있을 경우 data 넣기, 카운트 함수 실행
+    if (data) {
+      setSubjectList(data?.data[0].subjectList);
+      fetchSubjectCounts();
+    }
+  }, [data]);
 
-  // 메인 메뉴 클릭시 해당 Index ol에 높이 변경
-  const onClickMenu = (index: number) => {
-    setClickedIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
+  // useQuery 로딩 시
+  if (isLoading) return <>Loading...</>;
+
+  // useQuery 에러 시
+  if (isError) return <>{error.message}</>;
 
   return (
     <MenuWrapper>
@@ -36,39 +67,23 @@ function Menu() {
       <MenuList>
         {/* Menu List */}
         <MenuListUl>
-          {data && data.length > 0 ? (
+          {subjectList && subjectList.length > 0 ? (
             <>
-              {data.map((menuList, idx) => {
+              {subjectList.map((menuList, idx) => {
                 return (
                   <li key={idx}>
-                    <Strong onClick={() => onClickMenu(idx)}>
-                      {menuList.mainTitle}{" "}
-                      <span>{clickedIndex === idx ? "▲" : "▼"}</span>
+                    <Strong>
+                      {menuList}
+                      <span className="subject-count">
+                        ({subjectCounts[menuList] || 0})
+                      </span>
                     </Strong>
-                    {/* SubMenu List */}
-                    <MenuListOl
-                      className={clickedIndex === idx ? "selected" : ""}
-                    >
-                      {menuList.subTitle && menuList.subTitle.length > 0 ? (
-                        <>
-                          {menuList.subTitle.map((subList, i) => {
-                            return (
-                              <li key={i}>
-                                <p>- {subList}</p>
-                              </li>
-                            );
-                          })}
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </MenuListOl>
                   </li>
                 );
               })}
             </>
           ) : (
-            ""
+            <p>Clear</p>
           )}
         </MenuListUl>
       </MenuList>

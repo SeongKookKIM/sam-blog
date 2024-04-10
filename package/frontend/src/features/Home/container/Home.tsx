@@ -1,27 +1,38 @@
 import { useEffect, useState } from "react";
 import { HomePost, HomeWrapper } from "../style/Home";
-import { TDummyData } from "../../../types/dummyDataType";
-import { dummyData } from "../../../utils/dummyData";
 import { Section } from "../../common/styles/Section";
+import { useFetchQuery } from "../../../hooks/useQuery";
+import { TPostType } from "../../../types/postType";
 import HomePostList from "../components/HomePostList";
 
 function Home() {
-  const [data, setData] = useState<TDummyData[]>([]);
+  //   useQuery로 Post(All) 데이터 가져오기
+  const { data, isLoading, isError, error } = useFetchQuery(
+    "AllPostList",
+    "http://localhost:8080/home/postList",
+  );
+  const [postList, setPostList] = useState<TPostType[]>([]);
 
   // 레더링시 data 불러오기
   useEffect(() => {
-    setData(dummyData);
-  }, []);
+    setPostList(data?.data);
+  }, [data]);
+
+  // useQuery 로딩 시
+  if (isLoading) return <>Loading...</>;
+
+  // useQuery 에러 시
+  if (isError) return <>{error.message}</>;
 
   return (
     <Section>
       <HomeWrapper>
         <p className="title">최신 글</p>
         <HomePost>
-          {data && data.length > 0 ? (
+          {postList && postList.length > 0 ? (
             <>
-              {data.map((data, idx) => {
-                return <HomePostList data={data} key={idx} />;
+              {postList.map((post, idx) => {
+                return <HomePostList post={post} key={idx} />;
               })}
             </>
           ) : (
