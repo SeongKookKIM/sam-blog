@@ -7,7 +7,7 @@ import {
   Strong,
 } from "../style/Menu";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetchQuery } from "../../../../../hooks/useQuery";
 import axios from "axios";
 
@@ -23,6 +23,8 @@ function Menu() {
   const [subjectCounts, setSubjectCounts] = useState<{
     [subject: string]: number;
   }>({});
+
+  const navigator = useNavigate();
 
   // 레더링시 data 불러오기
   useEffect(() => {
@@ -72,7 +74,11 @@ function Menu() {
               {subjectList.map((menuList, idx) => {
                 return (
                   <li key={idx}>
-                    <Strong>
+                    <Strong
+                      onClick={() => {
+                        navigator(`/subjectList/${menuList}`);
+                      }}
+                    >
                       {menuList}
                       <span className="subject-count">
                         ({subjectCounts[menuList] || 0})

@@ -8,13 +8,13 @@ import {
   PostForm,
   Select,
 } from "../style/AddPostForm";
-import { Input } from "../../common/styles/Input";
-import { useFetchQuery } from "../../../hooks/useQuery";
+import { Input } from "../../../styles/Input";
+import { useFetchQuery } from "../../../../../hooks/useQuery";
 import { useCallback, useEffect, useState } from "react";
-import Editor from "../../common/components/Editor/container/Editor";
-import { Button } from "../../common/styles/Buttons";
+import Editor from "../component/Editor";
+import { Button } from "../../../styles/Buttons";
 import axios from "axios";
-import { TPostType } from "../../../types/postType";
+import { TPostType } from "../../../../../types/postType";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
@@ -74,6 +74,7 @@ function AddPostForm() {
         }
       }
     },
+    // eslint-disable-next-line
     [addSubjectText],
   );
 

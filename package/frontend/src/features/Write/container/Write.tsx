@@ -2,7 +2,7 @@ import { WriteWrapper } from "../style/Write";
 import { Section } from "../../common/styles/Section";
 import cookie from "react-cookies";
 import PasswordChecked from "../../common/components/PasswordChecked/container/PasswordChecked";
-import AddPostForm from "../component/AddPostForm";
+import AddPostForm from "../../common/components/Post/container/AddPostForm";
 
 function Write() {
   // 쿠키에서 로그인 정보 가져오기

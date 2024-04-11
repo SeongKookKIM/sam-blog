@@ -1,14 +1,13 @@
-import { TPostType } from "../../../types/postType";
-import { List } from "../style/HomePostList";
+import { TPostType } from "../../../../../types/postType";
+import { List } from "../style/PostListInfo";
 
 interface IDataProps {
   post: TPostType;
 }
 
 // Home 데이터 리스트 목록 컴포넌트
-function HomePostList({ post }: IDataProps) {
+function PostListInfo({ post }: IDataProps) {
   const date: string = new Date(post.date).toLocaleDateString();
-  console.log(post);
   return (
     <List>
       <p>{post.title}</p>
@@ -20,4 +19,4 @@ function HomePostList({ post }: IDataProps) {
   );
 }
 
-export default HomePostList;
+export default PostListInfo;

@@ -4,6 +4,7 @@ import TopNav from "../../common/components/TopNav/container/Topnav";
 import { Content, Main } from "../style/App";
 import Home from "../../Home/container/Home";
 import Write from "../../Write/container/Write";
+import SubjectPost from "../../SubjectPost/container/SubjectPost";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/subjectList/:id" element={<SubjectPost />} />
         </Routes>
       </Content>
     </Main>
