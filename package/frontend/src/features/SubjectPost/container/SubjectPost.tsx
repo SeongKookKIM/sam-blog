@@ -3,7 +3,6 @@ import PostList from "../../common/components/PostList/container/PostList";
 
 function SubjectPost() {
   const subject = useParams();
-  console.log(subject.id);
 
   return (
     <>

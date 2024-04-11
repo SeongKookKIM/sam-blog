@@ -49,7 +49,7 @@ function PostList({ subject }: ISubjectPropsType) {
   return (
     <Section>
       <HomeWrapper>
-        <p className="title">최신 글</p>
+        <p className="title">{subject ? subject : "최신 글"}</p>
         <HomePost>
           {postList && postList.length > 0 ? (
             <>
