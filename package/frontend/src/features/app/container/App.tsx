@@ -5,6 +5,7 @@ import { Content, Main } from "../style/App";
 import Home from "../../Home/container/Home";
 import Write from "../../Write/container/Write";
 import SubjectPost from "../../SubjectPost/container/SubjectPost";
+import Search from "../../Search/container/Search";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/write" element={<Write />} />
           <Route path="/subjectList/:id" element={<SubjectPost />} />
+          <Route path="/search/:term" element={<Search />} />
         </Routes>
       </Content>
     </Main>

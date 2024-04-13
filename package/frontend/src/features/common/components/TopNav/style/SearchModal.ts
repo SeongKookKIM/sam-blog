@@ -1,0 +1,26 @@
+import styled from "styled-components";
+
+export const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+export const SearchBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 30px;
+  min-width: 60%;
+  div {
+    display: flex;
+    gap: 30px;
+  }
+`;
