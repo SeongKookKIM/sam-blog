@@ -10,6 +10,7 @@ import addTitle from "./router/write/addTitle";
 import subjectCount from "./router/menu/subjectCount";
 import postList from "./router/home/postList";
 import search from "./router/search/search";
+import post from "./router/post/post";
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use("/write/addTitle", addTitle);
 app.use("/menu/subjectCount", subjectCount);
 app.use("/home/postList", postList);
 app.use("/search", search);
+app.use("/post", post);
 
 app.get("*", function (req: Request, res: Response) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));

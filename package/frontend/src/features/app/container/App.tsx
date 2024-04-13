@@ -6,6 +6,7 @@ import Home from "../../Home/container/Home";
 import Write from "../../Write/container/Write";
 import SubjectPost from "../../SubjectPost/container/SubjectPost";
 import Search from "../../Search/container/Search";
+import PostDetail from "../../PostDetail/container/PostDetail";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/write" element={<Write />} />
           <Route path="/subjectList/:id" element={<SubjectPost />} />
           <Route path="/search/:term" element={<Search />} />
+          <Route path="/detail/:title" element={<PostDetail />} />
+          <Route path="/write/edit" element={<Write />} />
         </Routes>
       </Content>
     </Main>

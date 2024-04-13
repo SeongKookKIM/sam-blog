@@ -14,7 +14,7 @@ import { useCallback, useEffect, useState } from "react";
 import Editor from "../component/Editor";
 import { Button } from "../../../styles/Buttons";
 import axios from "axios";
-import { TPostType } from "../../../../../types/postType";
+import { TEditPostType, TPostType } from "../../../../../types/postType";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
@@ -25,7 +25,11 @@ type FormValues = {
   subSubject: string;
 };
 
-function AddPostForm() {
+interface IEditPostDataType {
+  editPostData: TEditPostType;
+}
+
+function AddPostForm({ editPostData }: IEditPostDataType) {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "subject",
@@ -38,12 +42,27 @@ function AddPostForm() {
   // Editor Content
   const [content, setContent] = useState<string>("");
 
+  // Edit subject State
+  const [selectedSubject, setSelectedSubject] = useState<string>(
+    editPostData ? editPostData.subject : "",
+  );
+
+  // Edit데이터 가져오기
   const navigater = useNavigate();
 
   // Subject List에 추가
   useEffect(() => {
     setSubject(data?.data[0].subjectList);
   }, [data]);
+
+  // 수정 시 content에 데이터 넣기
+  useEffect(() => {
+    if (editPostData) {
+      setContent(editPostData.content);
+    } else {
+      setContent("");
+    }
+  }, [editPostData]);
 
   // react-hook-form
   const {
@@ -100,22 +119,43 @@ function AddPostForm() {
         content: content,
       };
 
+      // Post Edit 데이터
+      const editData = {
+        _id: editPostData._id,
+        title: data.title,
+        subject: data.subject,
+        subSubject: data.subSubject,
+        content: content,
+      };
+
       // 1.주제 추가
       axios
         .post("http://localhost:8080/write/addTitle", subjectData)
         .then((res) => {
           console.log(res.data);
-          // 2.포스터 추가
-          axios
-            .post("http://localhost:8080/write/addPost", postData)
-            .then((res) => {
-              alert(res.data);
-              navigater("/");
-              setTimeout(() => {
-                navigater(0);
-              }, 100);
-            })
-            .catch((err) => console.log(err));
+          // 2.포스터 추가 (수정/새로운 글)
+
+          if (editPostData) {
+            axios
+              .put("http://localhost:8080/post/edit", editData)
+              .then((res) => {
+                alert(res.data);
+                setTimeout(() => {
+                  navigater(0);
+                }, 100);
+              })
+              .catch((err) => console.log(err));
+          } else {
+            axios
+              .post("http://localhost:8080/write/addPost", postData)
+              .then((res) => {
+                alert(res.data);
+                setTimeout(() => {
+                  navigater(0);
+                }, 100);
+              })
+              .catch((err) => console.log(err));
+          }
         })
         .catch((err) => console.log(err));
     }
@@ -136,6 +176,7 @@ function AddPostForm() {
           width={"100%"}
           type="text"
           placeholder="제목을 입력해주세요."
+          defaultValue={editPostData ? editPostData.title : ""}
           aria-invalid={
             isSubmitted ? (errors.title ? "true" : "false") : undefined
           }
@@ -159,7 +200,8 @@ function AddPostForm() {
             {...register("subject", {
               required: "* 필수 입력란입니다.",
             })}
-            defaultValue={""}
+            value={selectedSubject}
+            onChange={(e) => setSelectedSubject(e.target.value)}
           >
             <option value="" disabled hidden>
               선택
@@ -202,6 +244,7 @@ function AddPostForm() {
           width={"300px"}
           type="text"
           placeholder="서브주제를 입력해주세요."
+          defaultValue={editPostData ? editPostData.subSubject : ""}
           aria-invalid={
             isSubmitted ? (errors.subSubject ? "true" : "false") : undefined
           }
@@ -232,7 +275,7 @@ function AddPostForm() {
           fontWeight: "700",
         }}
       >
-        추가
+        {editPostData ? "수정" : "추가"}
       </Button>
     </PostForm>
   );
