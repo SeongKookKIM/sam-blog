@@ -26,8 +26,6 @@ post.delete("/delete", async (req: Request, res: Response) => {
 });
 
 post.put("/edit", async (req: Request, res: Response) => {
-  console.log(req.body);
-
   const editData = {
     title: req.body.title,
     subject: req.body.subject,

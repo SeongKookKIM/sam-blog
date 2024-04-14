@@ -140,6 +140,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
               .put("http://localhost:8080/post/edit", editData)
               .then((res) => {
                 alert(res.data);
+                navigater("/");
                 setTimeout(() => {
                   navigater(0);
                 }, 100);
