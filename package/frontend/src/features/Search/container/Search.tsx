@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Section } from "../../common/styles/Section";
 import {
   HomePost,
@@ -13,6 +13,8 @@ function Search() {
   const { term } = useParams();
 
   const [postList, setPostList] = useState<TPostType[]>([]);
+
+  const navigator = useNavigate();
 
   useEffect(() => {
     if (term) {
@@ -33,7 +35,12 @@ function Search() {
               {postList.map((post, idx) => {
                 const date: string = new Date(post.date).toLocaleDateString();
                 return (
-                  <List key={idx}>
+                  <List
+                    key={idx}
+                    onClick={() =>
+                      navigator(`/detail/${post.title}`, { state: { post } })
+                    }
+                  >
                     <p>{post.title}</p>
                     <div>
                       <span>{post.subSubject}</span>
