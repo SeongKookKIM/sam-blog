@@ -200,6 +200,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
             }
             {...register("subject", {
               required: "* 필수 입력란입니다.",
+              value: selectedSubject || "",
             })}
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
