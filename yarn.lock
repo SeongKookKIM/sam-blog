@@ -2696,6 +2696,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dom-speech-recognition@npm:*":
+  version: 0.0.4
+  resolution: "@types/dom-speech-recognition@npm:0.0.4"
+  checksum: 10c0/0320bc864360c4e0833574438095b8b5c2dff5086ced72e71a9a089a49c93ad0162de70d6f36e1003bb4462e18abbfce16a23fba9022e92fa65234d031f1469b
+  languageName: node
+  linkType: hard
+
 "@types/dompurify@npm:^3.0.5":
   version: 3.0.5
   resolution: "@types/dompurify@npm:3.0.5"
@@ -2897,6 +2904,15 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/cd85b5f402126e44b8c7b573e74737389816abcc931b2b14d8f946ba81cce8637ea490419488fcae842efb1e2f69853bc30522e43fd8359e1007d4d14b8d8146
+  languageName: node
+  linkType: hard
+
+"@types/react-speech-recognition@npm:^3.9.5":
+  version: 3.9.5
+  resolution: "@types/react-speech-recognition@npm:3.9.5"
+  dependencies:
+    "@types/dom-speech-recognition": "npm:*"
+  checksum: 10c0/1765821eb7f53196853b5aa668e86060a822cc83c75624b786324851d54082e7d83deb9a141f0f69f3b1e0cff2045024351294616627a5d66f6ac47212a0d44f
   languageName: node
   linkType: hard
 
@@ -5344,6 +5360,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     "@types/react-cookies": "npm:^0.1.3"
     "@types/react-dom": "npm:^18.2.22"
+    "@types/react-speech-recognition": "npm:^3.9.5"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
     "@typescript-eslint/parser": "npm:^7.2.0"
     "@vitejs/plugin-react-swc": "npm:^3.5.0"
@@ -5369,6 +5386,8 @@ __metadata:
     react-quill: "npm:^2.0.0"
     react-redux: "npm:^9.1.0"
     react-router-dom: "npm:6"
+    react-speech-recognition: "npm:^3.10.0"
+    regenerator-runtime: "npm:^0.14.1"
     styled-components: "npm:^6.1.8"
     ts-jest: "npm:^29.1.2"
     typescript: "npm:^5.2.2"
@@ -8352,6 +8371,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-speech-recognition@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "react-speech-recognition@npm:3.10.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10c0/d992de98130f365237ab8e6bbac08a036937d546554f21a72c36854e2d1852f04202f893850003e4b7848db747ae59892cdfae63bc07b17c9cc0d8224c25a826
+  languageName: node
+  linkType: hard
+
 "react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -8438,7 +8466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.14.0":
+"regenerator-runtime@npm:^0.14.0, regenerator-runtime@npm:^0.14.1":
   version: 0.14.1
   resolution: "regenerator-runtime@npm:0.14.1"
   checksum: 10c0/1b16eb2c4bceb1665c89de70dcb64126a22bc8eb958feef3cd68fe11ac6d2a4899b5cd1b80b0774c7c03591dc57d16631a7f69d2daa2ec98100e2f29f7ec4cc4
