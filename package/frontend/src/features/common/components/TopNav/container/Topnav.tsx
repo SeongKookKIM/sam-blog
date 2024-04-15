@@ -13,9 +13,7 @@ function TopNav() {
   return (
     <Nav>
       <Div>
-        <Link to="#" onClick={toggleModal}>
-          검색
-        </Link>
+        <a onClick={toggleModal}>검색</a>
         <Link to="/">음성</Link>
         <Link to="/write">글작성</Link>
       </Div>
