@@ -24,3 +24,9 @@ export const SearchBox = styled.div`
     gap: 30px;
   }
 `;
+
+export const SearchInputWrapper = styled.div`
+  width: 100%;
+  height: 40px;
+  position: relative;
+`;
