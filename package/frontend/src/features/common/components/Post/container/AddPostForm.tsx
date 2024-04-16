@@ -120,13 +120,15 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
       };
 
       // Post Edit 데이터
-      const editData = {
-        _id: editPostData._id,
-        title: data.title,
-        subject: data.subject,
-        subSubject: data.subSubject,
-        content: content,
-      };
+      const editData = editPostData
+        ? {
+            _id: editPostData._id,
+            title: data.title,
+            subject: data.subject,
+            subSubject: data.subSubject,
+            content: content,
+          }
+        : null;
 
       // 1.주제 추가
       axios
