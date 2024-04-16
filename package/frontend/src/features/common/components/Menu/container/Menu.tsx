@@ -3,6 +3,7 @@ import {
   MenuList,
   MenuListUl,
   MenuTitle,
+  // MenuToggle,
   MenuWrapper,
   Strong,
 } from "../style/Menu";
@@ -23,6 +24,9 @@ function Menu() {
   const [subjectCounts, setSubjectCounts] = useState<{
     [subject: string]: number;
   }>({});
+
+  // 반응형 메뉴 토글
+  // const [isMenuToggle, setIsMenuToggle] = useState<boolean>(false);
 
   const navigator = useNavigate();
 
@@ -61,6 +65,7 @@ function Menu() {
 
   return (
     <MenuWrapper>
+      {/* <MenuToggle>{isMenuToggle ? "Hide" : "Show"}</MenuToggle> */}
       <MenuTitle>
         <Link to="/">
           Sam <span>Record</span>

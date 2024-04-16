@@ -13,9 +13,26 @@ export const MenuWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 900px) {
+    position: absolute;
+    /* right: 100%; */
+    overflow: visible;
+    left: 0;
+    z-index: 10;
+  }
+`;
+
+export const MenuToggle = styled.div`
+  background-color: "#96ccfe";
+  position: absolute;
+  z-index: 11;
+  top: 20px;
+  left: 100%;
 `;
 
 export const MenuTitle = styled.h1`

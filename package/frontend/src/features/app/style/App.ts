@@ -4,6 +4,18 @@ export const Main = styled.main`
   width: 100%;
   min-height: 100vh;
   display: flex;
+  overflow: hidden;
+  position: relative;
+
+  /* 반응형 */
+  @media (max-width: 900px) {
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0 20px black;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 `;
 
 export const Content = styled.article`

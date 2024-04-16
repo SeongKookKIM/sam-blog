@@ -8,6 +8,12 @@ export const Nav = styled.nav`
   justify-content: flex-end;
   background-color: white;
   border-bottom: 1px solid lightgray;
+
+  @media (max-width: 900px) {
+    max-width: 700px;
+    width: 100%;
+    padding: 30px 50px 10px;
+  }
 `;
 
 export const Div = styled.div`
@@ -17,5 +23,8 @@ export const Div = styled.div`
     font-weight: 500;
     cursor: pointer;
     color: #333;
+    @media (max-width: 900px) {
+      font-size: 14px;
+    }
   }
 `;
