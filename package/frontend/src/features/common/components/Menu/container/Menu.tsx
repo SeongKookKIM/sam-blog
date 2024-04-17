@@ -8,9 +8,12 @@ import {
   Strong,
 } from "../style/Menu";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFetchQuery } from "../../../../../hooks/useQuery";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
+import { handlerMenuTogglebtn } from "../redux/MenuSlice";
 
 function Menu() {
   //   useQuery로 Subject 데이터 가져오기
@@ -26,7 +29,13 @@ function Menu() {
   }>({});
 
   // 반응형 메뉴 토글
-  const [isMenuToggle, setIsMenuToggle] = useState<boolean>(false);
+  const isMenuToggle = useSelector((state: RootState) => state.MenuToggleSlice);
+  const dispatch = useDispatch();
+
+  // MenuToggleBtn
+  const onClickMenuToggleBtn = () => {
+    dispatch(handlerMenuTogglebtn(!isMenuToggle));
+  };
 
   const navigator = useNavigate();
 
@@ -65,13 +74,18 @@ function Menu() {
 
   return (
     <MenuWrapper className={isMenuToggle ? "menu-show" : ""}>
-      <MenuToggle onClick={() => setIsMenuToggle(!isMenuToggle)}>
+      <MenuToggle onClick={onClickMenuToggleBtn}>
         <span>{isMenuToggle ? "Hide" : "Sam Blog Menu Show!"}</span>
       </MenuToggle>
       <MenuTitle>
-        <Link to="/">
-          Sam <span>Record</span>
-        </Link>
+        <p
+          onClick={() => {
+            navigator("/");
+            onClickMenuToggleBtn();
+          }}
+        >
+          Sam <span>“Record”</span>
+        </p>
       </MenuTitle>
       <MenuList>
         {/* Menu List */}
@@ -84,6 +98,7 @@ function Menu() {
                     <Strong
                       onClick={() => {
                         navigator(`/subjectList/${menuList}`);
+                        onClickMenuToggleBtn();
                       }}
                     >
                       {menuList}
