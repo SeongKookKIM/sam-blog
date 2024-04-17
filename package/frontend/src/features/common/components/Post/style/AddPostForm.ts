@@ -7,6 +7,9 @@ export const PostForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 50px;
+  @media (max-width: 900px) {
+    min-width: auto;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -26,6 +29,12 @@ export const MainTitleWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 50px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 `;
 
 export const Select = styled.select`

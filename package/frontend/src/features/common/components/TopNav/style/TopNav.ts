@@ -14,6 +14,9 @@ export const Nav = styled.nav`
     width: 100%;
     padding: 30px 50px 10px;
   }
+  @media (max-width: 400px) {
+    padding: 30px 30px 10px;
+  }
 `;
 
 export const Div = styled.div`

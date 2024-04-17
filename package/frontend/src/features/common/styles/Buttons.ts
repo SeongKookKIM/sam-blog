@@ -6,4 +6,7 @@ export const Button = styled.button`
   cursor: pointer;
   font-size: 14px;
   background-color: white;
+  @media (max-width: 900px) {
+    padding: 6px 16px;
+  }
 `;

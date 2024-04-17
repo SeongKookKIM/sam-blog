@@ -6,6 +6,9 @@ export const HomeWrapper = styled.div`
   p.title {
     font-size: 18px;
     font-weight: bold;
+    @media (max-width: 400px) {
+      text-align: center;
+    }
   }
 `;
 export const HomePost = styled.ul`
@@ -15,4 +18,8 @@ export const HomePost = styled.ul`
   margin-top: 50px;
   gap: 40px;
   cursor: pointer;
+
+  @media (max-width: 900px) {
+    gap: 30px;
+  }
 `;

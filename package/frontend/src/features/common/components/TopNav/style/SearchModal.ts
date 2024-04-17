@@ -11,7 +11,9 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   padding-top: 100px;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 11;
 `;
+
 export const SearchBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,6 +24,14 @@ export const SearchBox = styled.div`
   div {
     display: flex;
     gap: 30px;
+    @media (max-width: 400px) {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 400px) {
+    min-width: auto;
+    width: 100%;
   }
 `;
 

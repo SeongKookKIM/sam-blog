@@ -20,19 +20,35 @@ export const MenuWrapper = styled.main`
 
   @media (max-width: 900px) {
     position: absolute;
-    /* right: 100%; */
+    right: 100%;
     overflow: visible;
-    left: 0;
     z-index: 10;
+    gap: 60px;
+    &.menu-show {
+      right: auto;
+      left: 0;
+      transition: left 0.5s ease;
+    }
+  }
+  @media (max-width: 400px) {
+    min-width: auto;
+    width: calc(100% - 50.84px);
   }
 `;
 
 export const MenuToggle = styled.div`
-  background-color: "#96ccfe";
+  background-color: #96ccfe;
   position: absolute;
-  z-index: 11;
-  top: 20px;
+  top: 0px;
   left: 100%;
+  padding: 20px 8px;
+  color: white;
+  cursor: pointer;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  span {
+    white-space: nowrap;
+  }
 `;
 
 export const MenuTitle = styled.h1`
@@ -42,6 +58,9 @@ export const MenuTitle = styled.h1`
   cursor: pointer;
   a {
     color: white;
+  }
+  @media (max-width: 900px) {
+    font-size: 25px;
   }
 `;
 

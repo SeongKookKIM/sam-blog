@@ -195,7 +195,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
       {/* 주제 */}
       <InputWrapper className="post-add-mainTilte">
         <Label>메인 주제</Label>
-        <MainTitleWrapper>
+        <MainTitleWrapper className="selected-box">
           <Select
             aria-invalid={
               isSubmitted ? (errors.subject ? "true" : "false") : undefined

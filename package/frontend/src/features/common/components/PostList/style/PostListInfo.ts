@@ -9,8 +9,12 @@ export const List = styled.li`
   border-bottom: 2px solid #e9ecef;
 
   p {
+    width: 100%;
     font-size: 20px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   div {
     display: flex;
@@ -23,6 +27,15 @@ export const List = styled.li`
     &:nth-child(1) {
       color: #333;
       width: 40px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    p {
+      font-size: 19px;
+    }
+    div {
+      gap: 10px;
     }
   }
 `;

@@ -34,11 +34,25 @@ export const PostDetailInfo = styled.div`
     font-size: 24px;
     color: black;
   }
+
+  @media (max-width: 900px) {
+    gap: 20px;
+    strong {
+      font-size: 19px;
+    }
+  }
 `;
 
 export const PostContentBox = styled.div`
   width: 100%;
   margin-top: 20px;
+  @media (max-width: 900px) {
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
 `;
 
 export const PostDetailBtnBox = styled.div`

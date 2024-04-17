@@ -3,7 +3,7 @@ import {
   MenuList,
   MenuListUl,
   MenuTitle,
-  // MenuToggle,
+  MenuToggle,
   MenuWrapper,
   Strong,
 } from "../style/Menu";
@@ -26,7 +26,7 @@ function Menu() {
   }>({});
 
   // 반응형 메뉴 토글
-  // const [isMenuToggle, setIsMenuToggle] = useState<boolean>(false);
+  const [isMenuToggle, setIsMenuToggle] = useState<boolean>(false);
 
   const navigator = useNavigate();
 
@@ -64,8 +64,10 @@ function Menu() {
   if (isError) return <>{error.message}</>;
 
   return (
-    <MenuWrapper>
-      {/* <MenuToggle>{isMenuToggle ? "Hide" : "Show"}</MenuToggle> */}
+    <MenuWrapper className={isMenuToggle ? "menu-show" : ""}>
+      <MenuToggle onClick={() => setIsMenuToggle(!isMenuToggle)}>
+        <span>{isMenuToggle ? "Hide" : "Sam Blog Menu Show!"}</span>
+      </MenuToggle>
       <MenuTitle>
         <Link to="/">
           Sam <span>Record</span>

@@ -18,6 +18,7 @@ export const PasswordCheckedForm = styled.form`
   gap: 20px;
   padding: 20px 30px;
   border: 1px solid black;
+  overflow: hidden;
   p {
     font-size: 18px;
     font-weight: 600;
@@ -26,5 +27,18 @@ export const PasswordCheckedForm = styled.form`
     display: block;
     font-size: 14px;
     color: #a9a9a9;
+  }
+
+  @media (max-width: 900px) {
+    p {
+      font-size: 16px;
+      text-align: center;
+    }
+    span {
+      text-align: center;
+    }
+    input {
+      min-width: 200px;
+    }
   }
 `;
