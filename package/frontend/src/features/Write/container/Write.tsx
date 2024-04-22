@@ -1,10 +1,11 @@
 import { WriteWrapper } from "../style/Write";
-import { Section } from "../../common/styles/Section";
 import cookie from "react-cookies";
-import PasswordChecked from "../../common/components/PasswordChecked/container/PasswordChecked";
-import AddPostForm from "../../common/components/Post/container/AddPostForm";
+
 import { useLocation } from "react-router-dom";
 import { TEditPostType } from "../../../types/postType";
+import { Section } from "../../../common/styles/Section";
+import AddPostForm from "../../../common/components/Post/container/AddPostForm";
+import PasswordChecked from "../../../common/components/PasswordChecked/container/PasswordChecked";
 
 function Write() {
   // 쿠키에서 로그인 정보 가져오기

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import PostList from "../../common/components/PostList/container/PostList";
+import PostList from "../../../common/components/PostList/container/PostList";
 
 function SubjectPost() {
   const subject = useParams();

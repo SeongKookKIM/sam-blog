@@ -1,4 +1,4 @@
-import PostList from "../../common/components/PostList/container/PostList";
+import PostList from "../../../common/components/PostList/container/PostList";
 
 function Home() {
   return (

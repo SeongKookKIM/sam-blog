@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Section } from "../../common/styles/Section";
-import {
-  HomePost,
-  HomeWrapper,
-} from "../../common/components/PostList/style/postList";
+
 import { TPostType } from "../../../types/postType";
-import { List } from "../../common/components/PostList/style/PostListInfo";
+import { Section } from "../../../common/styles/Section";
+import {
+  Post,
+  PostWrapper,
+} from "../../../common/components/PostList/style/postList";
+import { List } from "../../../common/components/PostList/style/PostListInfo";
 
 function Search() {
   const { term } = useParams();
@@ -27,9 +28,9 @@ function Search() {
 
   return (
     <Section>
-      <HomeWrapper>
+      <PostWrapper>
         <p className="title">검색 결과</p>
-        <HomePost>
+        <Post>
           {postList && postList.length > 0 ? (
             <>
               {postList.map((post, idx) => {
@@ -53,8 +54,8 @@ function Search() {
           ) : (
             <div>검색 결과가 존재하지 않습니다.</div>
           )}
-        </HomePost>
-      </HomeWrapper>
+        </Post>
+      </PostWrapper>
     </Section>
   );
 }

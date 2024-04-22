@@ -1,16 +1,16 @@
 import DOMPurify from "isomorphic-dompurify";
 import "react-quill/dist/quill.core.css";
-import { Section } from "../../common/styles/Section";
 import {
   PostContentBox,
   PostDetailBtnBox,
   PostDetailInfo,
   PostDetailWrapper,
 } from "../style/PostDetail";
-import { Button } from "../../common/styles/Buttons";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Section } from "../../../common/styles/Section";
+import { Button } from "../../../common/styles/Buttons";
 
 function PostDetail() {
   // 쿠키에서 로그인 정보 가져오기
