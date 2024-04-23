@@ -41,7 +41,7 @@ describe("Menu Test", () => {
     expect(toggleEl).not.toHaveClass("menu-show");
   });
 
-  test("renders subject list correctly", () => {
+  test("주제목록 랜더링 테스트", () => {
     const mockData = {
       data: [
         {

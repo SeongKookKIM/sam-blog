@@ -40,11 +40,16 @@ function PostList({ subject }: ISubjectPropsType) {
     }
   }, [data, subject]);
 
-  // useQuery 로딩 시
+  /* Jest Data진행
+    // useQuery 로딩 시
   if (isLoading) return <>Loading...</>;
 
   // useQuery 에러 시
   if (isError) return <>{error.message}</>;
+   */
+  console.log(isLoading);
+  console.log(isError);
+  console.log(error);
 
   return (
     <Section>
