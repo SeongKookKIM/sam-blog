@@ -12,11 +12,13 @@ import { Input } from "../../../styles/Input";
 import { useCallback, useEffect, useState } from "react";
 import Editor from "../component/Editor";
 import { Button } from "../../../styles/Buttons";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FormValues } from "../../../../types/FormValuesType";
 import { TEditPostType, TPostType } from "../../../../types/postType";
 import { useFetchQuery } from "../../../../hooks/useQuery";
+import { addSubject } from "../../../../hooks/useAddSubject";
+import { editPost } from "../../../../hooks/useEditPost";
+import { addPost } from "../../../../hooks/useAddPost";
 
 interface IEditPostDataType {
   editPostData: TEditPostType;
@@ -91,7 +93,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   );
 
   // PostAdd Submit시 데이터 보내기
-  const formSubmit: SubmitHandler<FormValues> = (data) => {
+  const formSubmit: SubmitHandler<FormValues> = async (data) => {
     // 날짜 추가
     const date = new Date().getTime();
 
@@ -123,39 +125,79 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
           }
         : null;
 
-      // 1.주제 추가
-      axios
-        .post("http://localhost:8080/write/addTitle", subjectData)
-        .then((res) => {
-          console.log(res.data);
-          // 2.포스터 추가 (수정/새로운 글)
+      try {
+        // 1. 주제추가
+        const addSubjectResult = await addSubject(subjectData);
+        // addSubjectResult.status(200)
+        if (addSubjectResult) {
+          //  포스터 수정일시
           if (editPostData) {
-            // 수정 글일 시 업데이트
-            axios
-              .put("http://localhost:8080/post/edit", editData)
-              .then((res) => {
-                alert(res.data);
-                navigater("/");
-                setTimeout(() => {
-                  navigater(0);
-                }, 100);
-              })
-              .catch((err) => console.log(err));
+            const editPostResult = await editPost(editData);
+            // editPostResult.status(200)
+            if (editPostResult) {
+              alert(editPostResult.data);
+              navigater("/");
+              setTimeout(() => {
+                navigater(0);
+              }, 100);
+            } else {
+              console.log("포스터 수정 실패");
+            }
           } else {
-            // 새로운 글일 시 새로 저장
-            axios
-              .post("http://localhost:8080/write/addPost", postData)
-              .then((res) => {
-                alert(res.data);
-                navigater("/");
-                setTimeout(() => {
-                  navigater(0);
-                }, 100);
-              })
-              .catch((err) => console.log(err));
+            // 새로운 포스터
+            const addPostResult = await addPost(postData);
+
+            // addPostResult.status(200)
+            if (addPostResult) {
+              alert(addPostResult.data);
+              navigater("/");
+              setTimeout(() => {
+                navigater(0);
+              }, 100);
+            } else {
+              console.log("포스터 생성 실패");
+            }
           }
-        })
-        .catch((err) => console.log(err));
+        } else {
+          alert("서버 통신 오류");
+        }
+      } catch {
+        throw Error;
+      }
+
+      // 1.주제 추가
+      //   axios
+      //     .post("http://localhost:8080/write/addTitle", subjectData)
+      //     .then((res) => {
+      //       console.log(res.data);
+      //       // 2.포스터 추가 (수정/새로운 글)
+      //       if (editPostData) {
+      //         // 수정 글일 시 업데이트
+      //         axios
+      //           .put("http://localhost:8080/post/edit", editData)
+      //           .then((res) => {
+      //             alert(res.data);
+      //             navigater("/");
+      //             setTimeout(() => {
+      //               navigater(0);
+      //             }, 100);
+      //           })
+      //           .catch((err) => console.log(err));
+      //       } else {
+      //         // 새로운 글일 시 새로 저장
+      //         axios
+      //           .post("http://localhost:8080/write/addPost", postData)
+      //           .then((res) => {
+      //             alert(res.data);
+      //             navigater("/");
+      //             setTimeout(() => {
+      //               navigater(0);
+      //             }, 100);
+      //           })
+      //           .catch((err) => console.log(err));
+      //       }
+      //     })
+      //     .catch((err) => console.log(err));
     }
   };
 

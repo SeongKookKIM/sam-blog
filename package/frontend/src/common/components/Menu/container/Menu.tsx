@@ -66,15 +66,16 @@ function Menu() {
   }, [data]);
 
   /* 테스트 진행시 useQuery 커스텀 훅으로 인한 오류로 주석
-    // // useQuery 로딩 시
-  // if (isLoading) return <>Loading...</>;
-
-  // // useQuery 에러 시
-  // if (isError) return <>{error.message}</>;
-  */
   console.log(isLoading);
   console.log(isError);
   console.log(error);
+  */
+
+  // useQuery 로딩 시
+  if (isLoading) return <>Loading...</>;
+
+  // useQuery 에러 시
+  if (isError) return <>{error.message}</>;
 
   return (
     <MenuWrapper
