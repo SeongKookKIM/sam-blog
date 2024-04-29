@@ -18,7 +18,7 @@ function Menu() {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "title",
-    "http://localhost:8080/write/postTitle",
+    "/write/postTitle",
   );
 
   // Subject State

@@ -20,7 +20,7 @@ function Search() {
   useEffect(() => {
     if (term) {
       axios
-        .post("http://localhost:8080/search", { searchValue: term })
+        .post("/search", { searchValue: term })
         .then((res) => setPostList(res.data))
         .catch((err) => console.log(err));
     }

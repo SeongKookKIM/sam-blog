@@ -28,7 +28,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "subject",
-    "http://localhost:8080/write/postTitle",
+    "/write/postTitle",
   );
 
   // react-hook-form
@@ -164,53 +164,20 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
       } catch {
         throw Error;
       }
-
-      // 1.주제 추가
-      //   axios
-      //     .post("http://localhost:8080/write/addTitle", subjectData)
-      //     .then((res) => {
-      //       console.log(res.data);
-      //       // 2.포스터 추가 (수정/새로운 글)
-      //       if (editPostData) {
-      //         // 수정 글일 시 업데이트
-      //         axios
-      //           .put("http://localhost:8080/post/edit", editData)
-      //           .then((res) => {
-      //             alert(res.data);
-      //             navigater("/");
-      //             setTimeout(() => {
-      //               navigater(0);
-      //             }, 100);
-      //           })
-      //           .catch((err) => console.log(err));
-      //       } else {
-      //         // 새로운 글일 시 새로 저장
-      //         axios
-      //           .post("http://localhost:8080/write/addPost", postData)
-      //           .then((res) => {
-      //             alert(res.data);
-      //             navigater("/");
-      //             setTimeout(() => {
-      //               navigater(0);
-      //             }, 100);
-      //           })
-      //           .catch((err) => console.log(err));
-      //       }
-      //     })
-      //     .catch((err) => console.log(err));
     }
   };
 
-  /*
-    // useQuery 로딩 시
+  /* // Test진행 시 주석(esLint 이슈)
+  console.log(isLoading);
+  console.log(isError);
+  console.log(error);
+  */
+
+  // useQuery 로딩 시
   if (isLoading) return <>Loading...</>;
 
   // useQuery 에러 시
   if (isError) return <>{error.message}</>;
-  */
-  console.log(isLoading);
-  console.log(isError);
-  console.log(error);
 
   return (
     <PostForm onSubmit={handleSubmit(formSubmit)}>

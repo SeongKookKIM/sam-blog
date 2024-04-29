@@ -20,7 +20,7 @@ function PasswordChecked() {
   const mutation = useMutation({
     mutationFn: (password: TPasswordType) => {
       return axios
-        .post("http://localhost:8080/write/passwordChcked", password)
+        .post("/write/passwordChcked", password)
         .then((res) => {
           //비밀번호 확인 알림
           alert(res.data);
