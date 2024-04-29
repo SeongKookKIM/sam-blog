@@ -45,12 +45,9 @@ function Menu() {
       const counts: { [subject: string]: number } = {};
       for (const subject of data?.data[0].subjectList || []) {
         try {
-          const response = await axios.post(
-            "http://localhost:8080/menu/subjectCount",
-            {
-              subjectName: subject,
-            },
-          );
+          const response = await axios.post("/menu/subjectCount", {
+            subjectName: subject,
+          });
           counts[subject] = response.data;
         } catch (err) {
           console.log(err);
