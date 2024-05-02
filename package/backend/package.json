@@ -7,7 +7,8 @@
   "license": "ISC",
   "scripts": {
     "server": "nodemon",
-    "build": "tsc && node dist"
+    "build": "tsc && node dist",
+    "dev": "node dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
