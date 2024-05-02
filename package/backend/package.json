@@ -8,7 +8,8 @@
   "scripts": {
     "server": "nodemon",
     "build": "tsc && node dist",
-    "dev": "node dist/server.js"
+    "dev": "node dist/server.js",
+    "heroku-postbuild": "yarn install"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
