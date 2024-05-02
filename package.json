@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "concurrently": "^8.2.2",
+    "heroku": "^8.11.5",
     "tree-cli": "^0.6.7"
   }
 }

@@ -7,16 +7,13 @@
   "license": "ISC",
   "scripts": {
     "server": "nodemon",
-    "build": "tsc && node dist",
-    "dev": "node dist/server.js",
-    "heroku-postbuild": "yarn install"
+    "build": "tsc && node dist"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
-    "heroku": "^8.11.5",
     "mongodb": "5",
     "multer": "^1.4.5-lts.1"
   },
