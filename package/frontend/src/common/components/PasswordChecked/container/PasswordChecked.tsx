@@ -29,7 +29,7 @@ function PasswordChecked() {
           cookie.save("isLogin", "pass", {
             expires,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
           });
 
           navigatge(0);
