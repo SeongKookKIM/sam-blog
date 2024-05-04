@@ -3,7 +3,6 @@ import { CheckedWrapper, PasswordCheckedForm } from "../style/PasswordChecked";
 import axios from "axios";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
-
 import { Section } from "../../../styles/Section";
 import { Input } from "../../../styles/Input";
 import { Button } from "../../../styles/Buttons";
@@ -30,8 +29,9 @@ function PasswordChecked() {
           cookie.save("isLogin", "pass", {
             expires,
             secure: true,
+            sameSite: "lax",
           });
-          // 새로고침
+
           navigatge(0);
         })
         .catch((err) => {

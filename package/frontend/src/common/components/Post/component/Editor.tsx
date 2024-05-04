@@ -46,7 +46,7 @@ function Editor({ content, setContent }: IContentProps) {
 
           const editor = quillRef.current!.getEditor();
           const range = editor.getSelection();
-          editor.insertEmbed(range!.index, "image", imgUrl);
+          editor.insertEmbed(range!.index, "image", imgUrl.data);
           editor.setSelection(range!.index + 1, 0);
         } catch (error) {
           console.log(error);

@@ -4618,24 +4618,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:^2.1591.0":
-  version: 2.1591.0
-  resolution: "aws-sdk@npm:2.1591.0"
-  dependencies:
-    buffer: "npm:4.9.2"
-    events: "npm:1.1.1"
-    ieee754: "npm:1.1.13"
-    jmespath: "npm:0.16.0"
-    querystring: "npm:0.2.0"
-    sax: "npm:1.2.1"
-    url: "npm:0.10.3"
-    util: "npm:^0.12.4"
-    uuid: "npm:8.0.0"
-    xml2js: "npm:0.6.2"
-  checksum: 10c0/616fa7a8e0b2303ca0bdcb3d5a05be40c4c43e33b65ffff4c9c9ef3cd5c1706f0fb58c202b533050141943e2dc0aa65d041b245b2d6a1684c490c1f979242d2d
-  languageName: node
-  linkType: hard
-
 "aws-sdk@npm:^2.1613.0":
   version: 2.1613.0
   resolution: "aws-sdk@npm:2.1613.0"
@@ -7016,7 +6998,6 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:^3.5.0"
     "@xeger/quill-image-actions": "npm:^0.7.2"
     "@xeger/quill-image-formats": "npm:^0.7.2"
-    aws-sdk: "npm:^2.1591.0"
     axios: "npm:^1.6.8"
     backend: "npm:*"
     dotenv: "npm:^16.4.5"
