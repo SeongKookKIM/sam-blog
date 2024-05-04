@@ -16,9 +16,9 @@ import { useNavigate } from "react-router-dom";
 import { FormValues } from "../../../../types/FormValuesType";
 import { TEditPostType, TPostType } from "../../../../types/postType";
 import { useFetchQuery } from "../../../../hooks/useQuery";
-import { addSubject } from "../../../../hooks/useAddSubject";
-import { editPost } from "../../../../hooks/useEditPost";
-import { addPost } from "../../../../hooks/useAddPost";
+import addSubject from "../../../../hooks/useAddSubject";
+import editPost from "../../../../hooks/useEditPost";
+import addPost from "../../../../hooks/useAddPost";
 
 interface IEditPostDataType {
   editPostData: TEditPostType | null;

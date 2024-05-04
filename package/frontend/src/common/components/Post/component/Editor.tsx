@@ -7,7 +7,8 @@ import styles from "../style/editor.module.css";
 // react-quill Image Resizing
 import { ImageActions } from "@xeger/quill-image-actions";
 import { ImageFormats } from "@xeger/quill-image-formats";
-import uploadToS3 from "../../../../hooks/UploadToS3";
+// import uploadToS3 from "../../../../hooks/UploadToS3";
+import axios from "axios";
 Quill.register("modules/imageActions", ImageActions);
 Quill.register("modules/imageFormats", ImageFormats);
 
@@ -26,18 +27,22 @@ function Editor({ content, setContent }: IContentProps) {
     input.click();
 
     input.addEventListener("change", async () => {
-      const file = input.files?.[0];
+      const file: File | undefined = input.files?.[0];
 
       if (file) {
         try {
-          const imgUrl = await uploadToS3({
-            file,
-            bucket: "sam-blog-image",
-            region: import.meta.env.VITE_AWS_S3_BUCKET_REGION,
-            accessKeyId: import.meta.env.VITE_AWS_S3_BUCKET_ACCESS_KEY_ID,
-            secretAccessKey: import.meta.env
-              .VITE_AWS_S3_BUCKET_SECRET_ACCESS_KEY,
-          });
+          const imageUpload = new FormData();
+          imageUpload.append("file", file as File);
+
+          const imgUrl = await axios.post(
+            "http://localhost:8080/write/uploadImage",
+            imageUpload,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            },
+          );
 
           const editor = quillRef.current!.getEditor();
           const range = editor.getSelection();

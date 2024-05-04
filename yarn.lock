@@ -3813,6 +3813,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/multer@npm:^1.4.11":
+  version: 1.4.11
+  resolution: "@types/multer@npm:1.4.11"
+  dependencies:
+    "@types/express": "npm:*"
+  checksum: 10c0/ace8e9f5ac7d2d7f6e0c35b790504f582a2f82a84cc06a7b90315527599b95256595bc0bb5bba60220c20a558554f0c21b96b94848b885987ab69512a3a9865e
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^20.11.30":
   version: 20.11.30
   resolution: "@types/node@npm:20.11.30"
@@ -4627,6 +4636,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"aws-sdk@npm:^2.1613.0":
+  version: 2.1613.0
+  resolution: "aws-sdk@npm:2.1613.0"
+  dependencies:
+    buffer: "npm:4.9.2"
+    events: "npm:1.1.1"
+    ieee754: "npm:1.1.13"
+    jmespath: "npm:0.16.0"
+    querystring: "npm:0.2.0"
+    sax: "npm:1.2.1"
+    url: "npm:0.10.3"
+    util: "npm:^0.12.4"
+    uuid: "npm:8.0.0"
+    xml2js: "npm:0.6.2"
+  checksum: 10c0/42b1ad608ef3b92677b71a6d7749307c09120bf56d54f01d150de1a16fd841f21dc7ad5009dcc7595c615c2c252126db3f2e7e82b48915ef1cb9f54573c562d5
+  languageName: node
+  linkType: hard
+
 "axios@npm:^1.6.8":
   version: 1.6.8
   resolution: "axios@npm:1.6.8"
@@ -4765,7 +4792,9 @@ __metadata:
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.21"
     "@types/mongodb": "npm:^4.0.7"
+    "@types/multer": "npm:^1.4.11"
     "@types/node": "npm:^20.11.30"
+    aws-sdk: "npm:^2.1613.0"
     bcrypt: "npm:^5.1.1"
     cors: "npm:^2.8.5"
     dotenv: "npm:^16.4.5"

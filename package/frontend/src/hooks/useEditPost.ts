@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const editPost = async (
+const editPost = async (
   editData: {
     _id: string;
     title: string;
@@ -13,3 +13,5 @@ export const editPost = async (
 
   return result;
 };
+
+export default editPost;

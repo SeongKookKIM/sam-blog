@@ -11,6 +11,7 @@ import subjectCount from "./router/menu/subjectCount";
 import postList from "./router/home/postList";
 import search from "./router/search/search";
 import post from "./router/post/post";
+import uploadImage from "./router/write/uploadImage";
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/menu/subjectCount", subjectCount);
 app.use("/home/postList", postList);
 app.use("/search", search);
 app.use("/post", post);
+app.use("/write/uploadImage", uploadImage);
 
 // app.get("*", function (req: Request, res: Response) {
 //   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
