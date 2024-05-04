@@ -21,7 +21,7 @@ import { editPost } from "../../../../hooks/useEditPost";
 import { addPost } from "../../../../hooks/useAddPost";
 
 interface IEditPostDataType {
-  editPostData: TEditPostType;
+  editPostData: TEditPostType | null;
 }
 
 function AddPostForm({ editPostData }: IEditPostDataType) {

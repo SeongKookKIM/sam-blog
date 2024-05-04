@@ -12,12 +12,12 @@ function Write() {
   const isLogin: string | undefined = cookie.load("isLogin");
 
   const itemLocation = useLocation();
-  const postData: TEditPostType = itemLocation.state
+  const postData: TEditPostType | null = itemLocation.state
     ? itemLocation.state.postData
     : null;
 
   // 로그인 통과시 Write페이 정상 출력 - 통과 못 할 경우 PasswordCheck
-  if (isLogin === "pass") {
+  if (isLogin !== null && isLogin === "pass") {
     return (
       <Section>
         <WriteWrapper>
