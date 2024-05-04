@@ -29,13 +29,13 @@ app.listen(process.env.PORT || 8080, () => {
     `);
 });
 
-// server-react connect
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+// // server-react connect
+// app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-app.get("/", function (req: Request, res: Response) {
-  console.log(req);
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.get("/", function (req: Request, res: Response) {
+//   console.log(req);
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });
 
 // Router
 app.use("/write/passwordChcked", passwordChecked);
@@ -47,6 +47,6 @@ app.use("/home/postList", postList);
 app.use("/search", search);
 app.use("/post", post);
 
-app.get("*", function (req: Request, res: Response) {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.get("*", function (req: Request, res: Response) {
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });

@@ -13,7 +13,7 @@ function PostList({ subject }: ISubjectPropsType) {
   //   useQuery로 Post(All) 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "AllPostList",
-    "/home/postList",
+    "http://localhost:8080/home/postList",
   );
   const [postList, setPostList] = useState<TPostType[]>([]);
 

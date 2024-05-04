@@ -28,7 +28,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "subject",
-    "/write/postTitle",
+    "http://localhost:8080/write/postTitle",
   );
 
   // react-hook-form
@@ -47,9 +47,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   const [content, setContent] = useState<string>("");
 
   // Edit subject State
-  const [selectedSubject, setSelectedSubject] = useState<string>(
-    editPostData ? editPostData.subject : "",
-  );
+  const [selectedSubject, setSelectedSubject] = useState<string>("");
 
   // useNavigate
   const navigater = useNavigate();
@@ -62,7 +60,8 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   // 수정 시 content에 데이터 넣기
   useEffect(() => {
     if (editPostData) {
-      setContent(editPostData.content);
+      setContent(editPostData.content || "");
+      setSelectedSubject(editPostData.subject || "");
     } else {
       setContent("");
     }

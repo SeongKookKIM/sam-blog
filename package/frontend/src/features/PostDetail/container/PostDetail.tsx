@@ -34,7 +34,7 @@ function PostDetail() {
   const handlerPostDelete = () => {
     if (window.confirm("게시물을 삭제 하시겠습니까?")) {
       axios
-        .delete("/post/delete", {
+        .delete("http://localhost:8080/post/delete", {
           data: itemLocation.state.post,
         })
         .then((res) => {

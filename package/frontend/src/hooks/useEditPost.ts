@@ -9,7 +9,7 @@ export const editPost = async (
     content: string;
   } | null,
 ) => {
-  const result = await axios.put("/post/edit", editData);
+  const result = await axios.put("http://localhost:8080/post/edit", editData);
 
   return result;
 };
