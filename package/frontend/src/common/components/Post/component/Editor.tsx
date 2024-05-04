@@ -7,7 +7,7 @@ import styles from "../style/editor.module.css";
 // react-quill Image Resizing
 import { ImageActions } from "@xeger/quill-image-actions";
 import { ImageFormats } from "@xeger/quill-image-formats";
-import { uploadToS3 } from "../../../../hooks/UploadToS3";
+import uploadToS3 from "../../../../hooks/UploadToS3";
 Quill.register("modules/imageActions", ImageActions);
 Quill.register("modules/imageFormats", ImageFormats);
 

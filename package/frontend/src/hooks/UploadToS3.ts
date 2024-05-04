@@ -8,9 +8,7 @@ interface UploadToS3Options {
   secretAccessKey: string;
 }
 
-export const uploadToS3 = async (
-  options: UploadToS3Options,
-): Promise<string> => {
+const uploadToS3 = async (options: UploadToS3Options): Promise<string> => {
   const { file, bucket, region, accessKeyId, secretAccessKey } = options;
 
   const name = Date.now().toString();
@@ -33,3 +31,5 @@ export const uploadToS3 = async (
 
   return imgUrl;
 };
+
+export default uploadToS3;
