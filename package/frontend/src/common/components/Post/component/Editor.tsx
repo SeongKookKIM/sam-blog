@@ -1,15 +1,18 @@
 import { useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill, { Quill } from "react-quill";
+// import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
+
 import { PostContentWrapper } from "../style/Editor";
 import styles from "../style/editor.module.css";
+import { uploadToS3 } from "../../../../hooks/UploadToS3";
 
 // react-quill Image Resizing
-import { ImageActions } from "@xeger/quill-image-actions";
-import { ImageFormats } from "@xeger/quill-image-formats";
-import { uploadToS3 } from "../../../../hooks/UploadToS3";
-Quill.register("modules/imageActions", ImageActions);
-Quill.register("modules/imageFormats", ImageFormats);
+// import { ImageActions } from "@xeger/quill-image-actions";
+// import { ImageFormats } from "@xeger/quill-image-formats";
+
+// Quill.register("modules/imageActions", ImageActions);
+// Quill.register("modules/imageFormats", ImageFormats);
 
 interface IContentProps {
   content: string;
@@ -54,8 +57,8 @@ function Editor({ content, setContent }: IContentProps) {
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
     return {
-      imageActions: {},
-      imageFormats: {},
+      // imageActions: {},
+      // imageFormats: {},
       toolbar: {
         container: [
           [{ header: [1, 2, 3, false] }],
@@ -73,10 +76,10 @@ function Editor({ content, setContent }: IContentProps) {
         handlers: {
           image: imageHandler,
         },
-        // 이미지 크기 조절
-        ImageResize: {
-          modules: ["Resize"],
-        },
+        // // 이미지 크기 조절
+        // ImageResize: {
+        //   modules: ["Resize"],
+        // },
       },
     };
   }, []);
@@ -91,25 +94,25 @@ function Editor({ content, setContent }: IContentProps) {
         value={content}
         onChange={setContent}
         modules={modules}
-        formats={[
-          "header",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-          "align",
-          "color",
-          "background",
-          "float",
-          "height",
-          "width",
-        ]}
+        // formats={[
+        //   "header",
+        //   "bold",
+        //   "italic",
+        //   "underline",
+        //   "strike",
+        //   "blockquote",
+        //   "list",
+        //   "bullet",
+        //   "indent",
+        //   "link",
+        //   "image",
+        //   "align",
+        //   "color",
+        //   "background",
+        //   "float",
+        //   "height",
+        //   "width",
+        // ]}
       />
     </PostContentWrapper>
   );
