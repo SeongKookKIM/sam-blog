@@ -27,6 +27,9 @@ app.listen(process.env.PORT || 8080, () => {
   #############################################  
     `);
 });
+app.get("/", (_req, res) => {
+    return res.send("Express Typescript on Vercel");
+});
 // Router
 app.use("/write/passwordChcked", passwordChecked_1.default);
 app.use("/write/postTitle", postTitle_1.default);
