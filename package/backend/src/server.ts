@@ -38,16 +38,20 @@ app.listen(process.env.PORT || 8080, () => {
 //   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 // });
 
+app.get("/", (_req: Request, res: Response) => {
+  return res.send("Express Typescript on Vercel");
+});
+
 // Router
-app.use("/write/passwordChcked", passwordChecked);
-app.use("/write/postTitle", postTitle);
-app.use("/write/addPost", addPost);
-app.use("/write/addTitle", addTitle);
-app.use("/menu/subjectCount", subjectCount);
-app.use("/home/postList", postList);
-app.use("/search", search);
-app.use("/post", post);
-app.use("/write/uploadImage", uploadImage);
+// app.use("/write/passwordChcked", passwordChecked);
+// app.use("/write/postTitle", postTitle);
+// app.use("/write/addPost", addPost);
+// app.use("/write/addTitle", addTitle);
+// app.use("/menu/subjectCount", subjectCount);
+// app.use("/home/postList", postList);
+// app.use("/search", search);
+// app.use("/post", post);
+// app.use("/write/uploadImage", uploadImage);
 
 // app.get("*", function (req: Request, res: Response) {
 //   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
