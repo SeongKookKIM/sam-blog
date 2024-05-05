@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const passwordChecked_1 = __importDefault(require("./router/write/passwordChecked"));
@@ -28,12 +27,12 @@ app.listen(process.env.PORT || 8080, () => {
   #############################################  
     `);
 });
-// server-react connect
-app.use(express_1.default.static(path_1.default.join(__dirname, "../../frontend/dist")));
-app.get("/", function (req, res) {
-    console.log(req);
-    res.sendFile(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
-});
+// // server-react connect
+// app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+// app.get("/", function (req: Request, res: Response) {
+//   console.log(req);
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });
 // Router
 app.use("/write/passwordChcked", passwordChecked_1.default);
 app.use("/write/postTitle", postTitle_1.default);
@@ -44,7 +43,7 @@ app.use("/home/postList", postList_1.default);
 app.use("/search", search_1.default);
 app.use("/post", post_1.default);
 app.use("/write/uploadImage", uploadImage_1.default);
-app.get("*", function (req, res) {
-    res.sendFile(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.get("*", function (req: Request, res: Response) {
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });
 //# sourceMappingURL=server.js.map
