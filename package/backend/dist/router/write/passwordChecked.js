@@ -15,12 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const mongoData_1 = require("../../utils/mongoData");
+const mongodb_1 = require("mongodb");
 let passwordChcked = express_1.default.Router();
 passwordChcked.use(express_1.default.json());
 // 비밀번호 일치하는지 확인
 passwordChcked.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const findPassword = yield mongoData_1.db.collection("isChecked").findOne();
+        const findPassword = yield mongoData_1.db
+            .collection("isChecked")
+            .findOne({ _id: new mongodb_1.ObjectID("65fd65f006aac3de229c5f50") });
         const result = bcryptjs_1.default.compareSync(req.body.password, findPassword.password);
         return result
             ? res.status(200).send("접속에 성공하셨습니다.")
