@@ -6,7 +6,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export let db: mongoDB.Db;
-new MongoClient(process.env.MONGO as string)
+
+new MongoClient(
+  process.env.MONGO as string,
+  { useNewUrlParser: true, useUnifiedTopology: true } as mongoDB.ConnectOptions,
+)
   .connect()
   .then((client) => {
     console.log("db연결");

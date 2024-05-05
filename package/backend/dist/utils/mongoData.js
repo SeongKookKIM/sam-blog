@@ -27,7 +27,7 @@ exports.db = void 0;
 const mongodb_1 = require("mongodb");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-new mongodb_1.MongoClient(process.env.MONGO)
+new mongodb_1.MongoClient(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
     .connect()
     .then((client) => {
     console.log("db연결");
