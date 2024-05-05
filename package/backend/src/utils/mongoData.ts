@@ -7,15 +7,7 @@ dotenv.config();
 
 export let db: mongoDB.Db;
 
-const clientOptions: mongoDB.MongoClientOptions & {
-  useNewUrlParser: boolean;
-  useUnifiedTopology: boolean;
-} = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
-new MongoClient(process.env.MONGO as string, clientOptions)
+new MongoClient(process.env.MONGO as string, { useUnifiedTopology: true })
   .connect()
   .then((client) => {
     console.log("db연결");
