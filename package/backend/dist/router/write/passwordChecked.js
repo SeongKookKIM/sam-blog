@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const mongoData_1 = require("../../utils/mongoData");
 let passwordChcked = express_1.default.Router();
 passwordChcked.use(express_1.default.json());
@@ -21,7 +21,7 @@ passwordChcked.use(express_1.default.json());
 passwordChcked.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const findPassword = yield mongoData_1.db.collection("isChecked").findOne();
-        const result = bcrypt_1.default.compareSync(req.body.password, findPassword.password);
+        const result = bcryptjs_1.default.compareSync(req.body.password, findPassword.password);
         return result
             ? res.status(200).send("접속에 성공하셨습니다.")
             : res.status(403).send("비밀번호가 일치하지 않습니다.");
