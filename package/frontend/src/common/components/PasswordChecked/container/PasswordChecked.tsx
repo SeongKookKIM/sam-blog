@@ -29,7 +29,6 @@ function PasswordChecked() {
           cookie.save("isLogin", "pass", {
             expires,
             secure: true,
-            sameSite: "none",
           });
 
           navigatge(0);
