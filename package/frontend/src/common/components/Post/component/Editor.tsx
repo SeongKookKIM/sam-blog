@@ -35,7 +35,7 @@ function Editor({ content, setContent }: IContentProps) {
           imageUpload.append("file", file as File);
 
           const imgUrl = await axios.post(
-            "http://localhost:8080/write/uploadImage",
+            "https://sam-blog-backend.vercel.app/write/uploadImage",
             imageUpload,
             {
               headers: {

@@ -9,7 +9,10 @@ const editPost = async (
     content: string;
   } | null,
 ) => {
-  const result = await axios.put("http://localhost:8080/post/edit", editData);
+  const result = await axios.put(
+    "https://sam-blog-backend.vercel.app/post/edit",
+    editData,
+  );
 
   return result;
 };

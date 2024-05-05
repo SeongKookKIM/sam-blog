@@ -20,7 +20,9 @@ function Search() {
   useEffect(() => {
     if (term) {
       axios
-        .post("http://localhost:8080/search", { searchValue: term })
+        .post("https://sam-blog-backend.vercel.app/search", {
+          searchValue: term,
+        })
         .then((res) => setPostList(res.data))
         .catch((err) => console.log(err));
     }
