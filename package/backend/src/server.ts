@@ -31,6 +31,9 @@ app.listen(process.env.PORT || 8080, () => {
 });
 
 // @@@@@@@@@@@@
+
+let db;
+
 const client = new MongoClient(process.env.MONGODB_URI ?? "");
 
 app.get("/", (_req: Request, res: Response) => {
@@ -38,7 +41,12 @@ app.get("/", (_req: Request, res: Response) => {
     client
       .connect()
       .then(() => {
-        return res.send("Express Typescript on Vercel");
+        db = client.db("blog");
+        if (db) {
+          return res.send("Express Typescript on Vercel");
+        } else {
+          return res.send("document없음?");
+        }
       })
       .catch((err) => {
         return res.send("연결오류");
