@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Content, Main } from "../style/App";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Menu from "../../../common/components/Menu/container/Menu";
 import TopNav from "../../../common/components/TopNav/container/Topnav";
 
@@ -14,6 +14,14 @@ const Search = lazy(() => import("../../Search/container/Search"));
 const PostDetail = lazy(() => import("../../PostDetail/container/PostDetail"));
 
 function App() {
+  function setScreenSize() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <Main>
       {/* Menu */}

@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const CheckedWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 66px);
+  height: calc(var(--vh, 1vh) * 100) - 60px;
   padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 900px) {
+    height: calc(var(--vh, 1vh) * 100);
+  }
 `;
 
 export const PasswordCheckedForm = styled.form`

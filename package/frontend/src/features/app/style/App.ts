@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   overflow: hidden;
   position: relative;
@@ -20,7 +20,7 @@ export const Main = styled.main`
 
 export const Content = styled.article`
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   position: relative;

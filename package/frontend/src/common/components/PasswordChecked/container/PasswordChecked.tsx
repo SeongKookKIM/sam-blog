@@ -20,7 +20,7 @@ function PasswordChecked() {
     mutationFn: (password: TPasswordType) => {
       return axios
         .post(
-          "https://sam-blog-backend.vercel.app/write/passwordChcked",
+          "https://sam-blog-server.vercel.app/write/passwordChcked",
           password,
         )
         .then((res) => {

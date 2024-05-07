@@ -8,8 +8,8 @@ export const WriteWrapper = styled.div`
     font-weight: bold;
   }
 
-  @media (max-width: 400px) {
-    padding: 30px 10px;
+  @media (max-width: 600px) {
+    padding: 12px 10px;
     h2 {
       text-align: center;
     }

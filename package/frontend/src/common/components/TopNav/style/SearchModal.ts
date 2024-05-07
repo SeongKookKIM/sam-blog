@@ -5,13 +5,13 @@ export const ModalWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 100px;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 11;
+  z-index: 12;
 `;
 
 export const SearchBox = styled.div`

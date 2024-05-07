@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MenuWrapper = styled.main`
   width: 20%;
   min-width: 330px;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   background-color: #96ccfe;
   padding: 50px 30px 30px;
@@ -19,7 +19,7 @@ export const MenuWrapper = styled.main`
   }
 
   @media (max-width: 900px) {
-    position: absolute;
+    position: fixed;
     right: 100%;
     overflow: visible;
     z-index: 10;

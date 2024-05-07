@@ -28,7 +28,7 @@ function AddPostForm({ editPostData }: IEditPostDataType) {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "subject",
-    "https://sam-blog-backend.vercel.app/write/postTitle",
+    "https://sam-blog-server.vercel.app/write/postTitle",
   );
 
   // react-hook-form

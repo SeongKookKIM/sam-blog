@@ -7,6 +7,10 @@ button {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+:root {
+  --vh: 100%;
+}
+
 /* react-quill 에디터 높이 */
 .ql-editor {
   min-height: 500px;

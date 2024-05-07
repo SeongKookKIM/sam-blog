@@ -20,7 +20,7 @@ function Search() {
   useEffect(() => {
     if (term) {
       axios
-        .post("https://sam-blog-backend.vercel.app/search", {
+        .post("https://sam-blog-server.vercel.app/search", {
           searchValue: term,
         })
         .then((res) => setPostList(res.data))
