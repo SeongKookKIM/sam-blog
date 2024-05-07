@@ -27,13 +27,29 @@ exports.db = void 0;
 const mongodb_1 = require("mongodb");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-new mongodb_1.MongoClient(process.env.MONGODB_URI || process.env.MONGO, {
+const options = {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-})
+    serverSelectionTimeoutMS: 10000,
+    socketTimeoutMS: 120000,
+    connectTimeoutMS: 60000,
+    poolSize: 10,
+};
+const mongoURI = process.env.MONGODB_URI || process.env.MONGO;
+if (!mongoURI) {
+    console.error("MONGODB_URI 또는 MONGO 환경 변수가 설정되지 않았습니다.");
+    process.exit(1);
+}
+// 새로운 연결 문자열 형식 사용 (mongodb+srv://...)
+const client = new mongodb_1.MongoClient(mongoURI, options);
+client
     .connect()
-    .then((client) => {
+    .then(() => {
     console.log("db연결");
     exports.db = client.db("blog");
 })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+    console.error("MongoDB 연결 실패:", err);
+    process.exit(1);
+});
 //# sourceMappingURL=mongoData.js.map
