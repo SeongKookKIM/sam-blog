@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express";
-import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import passwordChecked from "./router/write/passwordChecked";
 import postTitle from "./router/write/postTitle";
 import addPost from "./router/write/addPost";
@@ -12,7 +10,8 @@ import postList from "./router/home/postList";
 import search from "./router/search/search";
 import post from "./router/post/post";
 import uploadImage from "./router/write/uploadImage";
-import { db } from "./utils/mongoData";
+
+import { MongoClient } from "mongodb";
 
 const app = express();
 
@@ -31,8 +30,11 @@ app.listen(process.env.PORT || 8080, () => {
     `);
 });
 
+// @@@@@@@@@@@@
+const client = new MongoClient(process.env.MONGODB_URI ?? "");
+
 app.get("/", (_req: Request, res: Response) => {
-  if (db) {
+  if (client) {
     return res.send("Express Typescript on Vercel");
   } else {
     return res.send("db연결 안댐");
