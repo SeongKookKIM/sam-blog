@@ -16,10 +16,14 @@ const options: mongoDB.MongoClientOptions = {
   connectTimeoutMS: 30000,
 };
 
-new MongoClient(
-  process.env.MONGO || (process.env.MONGODB_URI as string),
-  options,
-)
+const mongoURI = process.env.MONGODB_URI;
+
+if (!mongoURI) {
+  console.error("MONGODB_URI 환경 변수가 설정되지 않았습니다.");
+  process.exit(1);
+}
+
+new MongoClient(mongoURI, options)
   .connect()
   .then((client) => {
     console.log("db연결");
