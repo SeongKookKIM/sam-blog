@@ -6,14 +6,13 @@ dotenv.config();
 
 export let db: mongoDB.Db;
 
-const options: mongoDB.MongoClientOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 10000,
-  socketTimeoutMS: 120000,
-  connectTimeoutMS: 60000,
-  poolSize: 10,
-};
+// const options: mongoDB.MongoClientOptions = {
+//   useUnifiedTopology: true,
+//   serverSelectionTimeoutMS: 10000,
+//   socketTimeoutMS: 120000,
+//   connectTimeoutMS: 60000,
+//   poolSize: 10,
+// };
 
 const mongoURI = process.env.MONGODB_URI || process.env.MONGO;
 
@@ -23,7 +22,7 @@ if (!mongoURI) {
 }
 
 // 새로운 연결 문자열 형식 사용 (mongodb+srv://...)
-const client = new MongoClient(mongoURI, options);
+const client = new MongoClient(mongoURI);
 
 client
   .connect()
