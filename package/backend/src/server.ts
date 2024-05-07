@@ -12,9 +12,7 @@ import postList from "./router/home/postList";
 import search from "./router/search/search";
 import post from "./router/post/post";
 import uploadImage from "./router/write/uploadImage";
-
-import * as mongoDB from "mongodb";
-import { MongoClient } from "mongodb";
+import { db } from "./utils/mongoData";
 
 const app = express();
 
@@ -33,18 +31,12 @@ app.listen(process.env.PORT || 8080, () => {
     `);
 });
 
-export let db: mongoDB.Db;
-const client = new MongoClient(process.env.MONGO ?? "");
-
 app.get("/", (_req: Request, res: Response) => {
-  client
-    .connect()
-    .then(() => {
-      return res.send("Express Typescript on Vercel");
-    })
-    .catch((err) => {
-      return res.send("연결안됌;");
-    });
+  if (db) {
+    return res.send("Express Typescript on Vercel");
+  } else {
+    return res.send("db연결 안댐");
+  }
 });
 
 // Router
