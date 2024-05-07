@@ -6,7 +6,11 @@ postList.use(express.json());
 
 // 메인 주제 추가
 postList.get("/", async (req: Request, res: Response) => {
-  return res.send("포스터..");
+  if (db!) {
+    return res.send("포스터..");
+  } else {
+    return res.send("db no..");
+  }
   // try {
   //   const result = await db!.collection("post").find().toArray();
 
