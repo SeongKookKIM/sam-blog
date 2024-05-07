@@ -21,16 +21,19 @@ export let db: mongoDB.Db;
 //   process.exit(1);
 // }
 
-// 새로운 연결 문자열 형식 사용 (mongodb+srv://...)
-const client = new MongoClient(process.env.MONGODB_URI ?? "");
+try {
+  const client = new MongoClient(process.env.MONGODB_URI ?? "");
 
-client
-  .connect()
-  .then(() => {
-    console.log("db연결");
-    db = client.db("blog");
-  })
-  .catch((err) => {
-    console.error("MongoDB 연결 실패:", err);
-    process.exit(1);
-  });
+  client
+    .connect()
+    .then(() => {
+      console.log("db연결");
+      db = client.db("blog");
+    })
+    .catch((err) => {
+      console.error("MongoDB 연결 실패:", err);
+      process.exit(1);
+    });
+} catch {
+  console.log("db error");
+}
