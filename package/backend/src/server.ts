@@ -33,13 +33,22 @@ app.listen(process.env.PORT || 8080, () => {
 // @@@@@@@@@@@@
 const client = new MongoClient(process.env.MONGODB_URI ?? "");
 
-app.get("/", (_req: Request, res: Response) => {
-  if (client) {
-    return res.send("Express Typescript on Vercel");
-  } else {
-    return res.send("db연결 안댐");
-  }
-});
+client
+  .connect()
+  .then((client) => {
+    app.get("/", (_req: Request, res: Response) => {
+      return res.send("Express Typescript on Vercel");
+    });
+  })
+  .catch((err) => console.log(err));
+
+// app.get("/", (_req: Request, res: Response) => {
+//   if (client) {
+//     return res.send("Express Typescript on Vercel");
+//   } else {
+//     return res.send("db연결 안댐");
+//   }
+// });
 
 // Router
 app.use("/write/passwordChcked", passwordChecked);
