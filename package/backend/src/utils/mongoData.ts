@@ -7,9 +7,19 @@ dotenv.config();
 
 export let db: mongoDB.Db;
 
-new MongoClient(process.env.MONGODB_URI || (process.env.MONGO as string), {
+const options: mongoDB.MongoClientOptions = {
+  useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  poolSize: 10,
+  connectTimeoutMS: 30000,
+};
+
+new MongoClient(
+  process.env.MONGODB_URI || (process.env.MONGO as string),
+  options,
+)
   .connect()
   .then((client) => {
     console.log("db연결");
