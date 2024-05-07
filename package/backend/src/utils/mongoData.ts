@@ -8,11 +8,11 @@ export let db: mongoDB.Db;
 
 const options: mongoDB.MongoClientOptions = {
   useNewUrlParser: true,
-  useUnifiedTopology: true, // 이 옵션을 추가
-  serverSelectionTimeoutMS: 5000,
-  socketTimeoutMS: 45000,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 120000,
+  connectTimeoutMS: 60000,
   poolSize: 10,
-  connectTimeoutMS: 30000,
 };
 
 const mongoURI = process.env.MONGODB_URI || process.env.MONGO;
