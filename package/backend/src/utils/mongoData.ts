@@ -7,7 +7,9 @@ dotenv.config();
 
 export let db: mongoDB.Db;
 
-new MongoClient(process.env.MONGO as string, { useUnifiedTopology: true })
+new MongoClient(process.env.MONGODB_URI || (process.env.MONGO as string), {
+  useUnifiedTopology: true,
+})
   .connect()
   .then((client) => {
     console.log("db연결");
