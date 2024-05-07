@@ -22,7 +22,7 @@ export let db: mongoDB.Db;
 // }
 
 try {
-  const client = new MongoClient(process.env.MONGO ?? "");
+  const client = new MongoClient(process.env.MONGODB_URI ?? "");
 
   client
     .connect()
