@@ -11,8 +11,6 @@ import search from "./router/search/search";
 import post from "./router/post/post";
 import uploadImage from "./router/write/uploadImage";
 
-import { MongoClient } from "mongodb";
-
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
