@@ -6,7 +6,7 @@
     ]
   },
   "scripts": {
-    "server": "cd package && cd backend && yarn server",
+    "server": "cd package && cd backend && yarn start",
     "dev": "cd package && cd frontend && yarn dev",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn dev\""
   },
