@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import db from "../../server";
+import db from "../../utils/mongoData";
 
 let post = express.Router();
 post.use(express.json());

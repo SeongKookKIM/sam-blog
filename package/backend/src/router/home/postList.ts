@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import db from "../../server";
+import db from "../../utils/mongoData";
 
 let postList = express.Router();
 postList.use(express.json());

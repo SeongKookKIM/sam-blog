@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import db from "../../server";
+import db from "../../utils/mongoData";
 
 let subjectCount = express.Router();
 subjectCount.use(express.json());

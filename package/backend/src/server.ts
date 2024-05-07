@@ -30,31 +30,8 @@ app.listen(process.env.PORT || 8080, () => {
     `);
 });
 
-// @@@@@@@@@@@@
-
-let db;
-
-const client = new MongoClient(process.env.MONGODB_URI ?? "");
-
 app.get("/", (_req: Request, res: Response) => {
-  if (client) {
-    client
-      .connect()
-      .then(() => {
-        db = client.db("blog");
-        if (db) {
-          console.log("db연결!");
-          return res.send("Express Typescript on Vercel");
-        } else {
-          return res.send("document없음?");
-        }
-      })
-      .catch((err) => {
-        return res.send("연결오류");
-      });
-  } else {
-    return res.send("db연결 안댐");
-  }
+  return res.send("Express Typescript on Vercel");
 });
 
 // Router
@@ -67,5 +44,3 @@ app.use("/home/postList", postList);
 app.use("/search", search);
 app.use("/post", post);
 app.use("/write/uploadImage", uploadImage);
-
-export default db;
