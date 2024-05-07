@@ -14,7 +14,7 @@ export let db: mongoDB.Db;
 //   poolSize: 10,
 // };
 
-const mongoURI = process.env.MONGODB_URI || process.env.MONGO;
+const mongoURI = process.env.MONGO || process.env.MONGODB_URI;
 
 if (!mongoURI) {
   console.error("MONGODB_URI 또는 MONGO 환경 변수가 설정되지 않았습니다.");
