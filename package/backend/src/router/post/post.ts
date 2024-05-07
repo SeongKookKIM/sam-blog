@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
 import { ObjectId } from "mongodb";
+import db from "../../server";
 
 let post = express.Router();
 post.use(express.json());
@@ -9,7 +9,7 @@ post.use(express.json());
 post.delete("/delete", async (req: Request, res: Response) => {
   console.log(req.body);
   try {
-    const result = await db
+    const result = await db!
       .collection("post")
       .deleteOne({ _id: new ObjectId(req.body._id) });
 
@@ -33,7 +33,7 @@ post.put("/edit", async (req: Request, res: Response) => {
     content: req.body.content,
   };
 
-  const result = await db
+  const result = await db!
     .collection("post")
     .updateOne({ _id: new ObjectId(req.body._id) }, { $set: editData });
 

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
+import db from "../../server";
 
 let postList = express.Router();
 postList.use(express.json());
@@ -7,7 +7,7 @@ postList.use(express.json());
 // 메인 주제 추가
 postList.get("/", async (req: Request, res: Response) => {
   try {
-    const result = await db.collection("post").find().toArray();
+    const result = await db!.collection("post").find().toArray();
 
     if (result) {
       return res.status(200).json(result);

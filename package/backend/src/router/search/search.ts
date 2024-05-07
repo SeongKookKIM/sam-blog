@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
+import db from "../../server";
 
 let search = express.Router();
 search.use(express.json());
@@ -17,7 +17,7 @@ search.post("/", async (req: Request, res: Response) => {
       },
     },
   ];
-  const result = await db.collection("post").aggregate(search).toArray();
+  const result = await db!.collection("post").aggregate(search).toArray();
 
   if (result) {
     return res.status(200).json(result);

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
+import db from "../../server";
 
 let addTitle = express.Router();
 addTitle.use(express.json());
@@ -7,7 +7,7 @@ addTitle.use(express.json());
 // 메인 주제 추가
 addTitle.post("/", async (req: Request, res: Response) => {
   try {
-    const result = await db
+    const result = await db!
       .collection("subject")
       .updateOne(
         { name: "subject" },

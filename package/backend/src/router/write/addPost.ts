@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
+import db from "../../server";
 
 let addPost = express.Router();
 addPost.use(express.json());
@@ -7,7 +7,7 @@ addPost.use(express.json());
 // 타이틀 메인,서브 타이틀 찾은 후 목록 추가
 addPost.post("/", async (req: Request, res: Response) => {
   try {
-    const result = await db.collection("post").insertOne(req.body);
+    const result = await db!.collection("post").insertOne(req.body);
 
     if (result) {
       return res.status(200).send("포스터를 저장하였습니다.");

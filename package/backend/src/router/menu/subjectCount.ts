@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../../utils/mongoData";
+import db from "../../server";
 
 let subjectCount = express.Router();
 subjectCount.use(express.json());
@@ -7,7 +7,7 @@ subjectCount.use(express.json());
 // 메인 주제 추가
 subjectCount.post("/", async (req: Request, res: Response) => {
   try {
-    const result = await db
+    const result = await db!
       .collection("post")
       .find({ subject: req.body.subjectName })
       .toArray();

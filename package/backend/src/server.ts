@@ -43,6 +43,7 @@ app.get("/", (_req: Request, res: Response) => {
       .then(() => {
         db = client.db("blog");
         if (db) {
+          console.log("db연결!");
           return res.send("Express Typescript on Vercel");
         } else {
           return res.send("document없음?");
@@ -66,3 +67,5 @@ app.use("/home/postList", postList);
 app.use("/search", search);
 app.use("/post", post);
 app.use("/write/uploadImage", uploadImage);
+
+export default db;
