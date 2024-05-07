@@ -13,6 +13,9 @@ import search from "./router/search/search";
 import post from "./router/post/post";
 import uploadImage from "./router/write/uploadImage";
 
+import * as mongoDB from "mongodb";
+import { MongoClient } from "mongodb";
+
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -30,8 +33,18 @@ app.listen(process.env.PORT || 8080, () => {
     `);
 });
 
+export let db: mongoDB.Db;
+const client = new MongoClient(process.env.MONGO ?? "");
+
 app.get("/", (_req: Request, res: Response) => {
-  return res.send("Express Typescript on Vercel");
+  client
+    .connect()
+    .then(() => {
+      return res.send("Express Typescript on Vercel");
+    })
+    .catch((err) => {
+      return res.send("연결안됌;");
+    });
 });
 
 // Router
