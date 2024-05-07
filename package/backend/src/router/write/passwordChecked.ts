@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { db } from "../../utils/mongoData";
-import { ObjectID } from "mongodb";
+import { ObjectId } from "mongodb";
 
 let passwordChcked = express.Router();
 passwordChcked.use(express.json());
@@ -11,7 +11,7 @@ passwordChcked.post("/", async (req: Request, res: Response) => {
   try {
     const findPassword = await db
       .collection("isChecked")
-      .findOne({ _id: new ObjectID("65fd65f006aac3de229c5f50") });
+      .findOne({ _id: new ObjectId("65fd65f006aac3de229c5f50") });
     const result = bcrypt.compareSync(
       req.body.password,
       findPassword!.password,
