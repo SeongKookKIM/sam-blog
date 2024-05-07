@@ -17,7 +17,7 @@ const options: mongoDB.MongoClientOptions = {
 };
 
 new MongoClient(
-  process.env.MONGODB_URI || (process.env.MONGO as string),
+  process.env.MONGO || (process.env.MONGODB_URI as string),
   options,
 )
   .connect()
