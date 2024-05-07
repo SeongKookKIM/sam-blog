@@ -16,7 +16,7 @@ const options: mongoDB.MongoClientOptions = {
   connectTimeoutMS: 30000,
 };
 
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.MONGO;
 
 if (!mongoURI) {
   console.error("MONGODB_URI 환경 변수가 설정되지 않았습니다.");
