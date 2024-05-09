@@ -4,6 +4,7 @@ export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 15;
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
   display: flex;
@@ -11,7 +12,6 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   padding-top: 100px;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 12;
 `;
 
 export const SearchBox = styled.div`

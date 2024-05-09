@@ -71,10 +71,18 @@ function PostDetail() {
         />
 
         <PostDetailBtnBox>
-          <Button type="button" onClick={hadnlerPostEdit}>
+          <Button
+            type="button"
+            onClick={hadnlerPostEdit}
+            style={{ color: "black" }}
+          >
             수정
           </Button>
-          <Button type="button" onClick={handlerPostDelete}>
+          <Button
+            type="button"
+            onClick={handlerPostDelete}
+            style={{ color: "black" }}
+          >
             삭제
           </Button>
         </PostDetailBtnBox>

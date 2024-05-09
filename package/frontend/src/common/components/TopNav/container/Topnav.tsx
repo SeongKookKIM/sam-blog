@@ -11,14 +11,15 @@ function TopNav() {
   };
 
   return (
-    <Nav>
-      <Div>
-        <a onClick={toggleSearchModal}>검색</a>
-        <Link to="/write">글작성</Link>
-      </Div>
-
+    <>
+      <Nav>
+        <Div>
+          <a onClick={toggleSearchModal}>검색</a>
+          <Link to="/write">글작성</Link>
+        </Div>
+      </Nav>
       {isModalOpen ? <SearchModal close={setIsModalOpen} /> : ""}
-    </Nav>
+    </>
   );
 }
 

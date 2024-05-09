@@ -14,6 +14,7 @@ export const MenuWrapper = styled.main`
   align-items: center;
   gap: 100px;
   position: relative;
+  z-index: 12;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -22,8 +23,8 @@ export const MenuWrapper = styled.main`
     position: fixed;
     right: 100%;
     overflow: visible;
-    z-index: 10;
     gap: 60px;
+
     &.menu-show {
       right: auto;
       left: 0;

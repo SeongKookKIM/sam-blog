@@ -9,10 +9,8 @@ export const Main = styled.main`
 
   /* 반응형 */
   @media (max-width: 900px) {
-    max-width: 700px;
     display: flex;
     justify-content: center;
-    box-shadow: 0 0 20px black;
     margin: 0 auto;
     overflow: hidden;
   }

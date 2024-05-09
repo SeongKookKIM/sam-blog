@@ -26,7 +26,6 @@ export const List = styled.li`
     color: #a9a9a9;
     &:nth-child(1) {
       color: #333;
-      width: 40px;
     }
   }
 

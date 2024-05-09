@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-  width: calc(100% - 300px);
+  width: 100%;
   position: fixed;
+  left: 0;
+  z-index: 11;
   padding: 50px 50px 10px;
   display: flex;
   justify-content: flex-end;
@@ -10,9 +12,9 @@ export const Nav = styled.nav`
   border-bottom: 1px solid lightgray;
 
   @media (max-width: 900px) {
-    max-width: 700px;
     width: 100%;
     padding: 30px 50px 10px;
+    left: auto;
   }
   @media (max-width: 400px) {
     padding: 30px 30px 10px;

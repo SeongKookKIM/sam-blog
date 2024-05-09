@@ -81,7 +81,9 @@ function PasswordChecked() {
             onChange={(e) => setPassword(e.target.value)}
             data-testid="password-test"
           />
-          <Button type="submit">입력</Button>
+          <Button type="submit" style={{ color: "black" }}>
+            입력
+          </Button>
         </PasswordCheckedForm>
       </CheckedWrapper>
     </Section>

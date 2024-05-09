@@ -111,7 +111,11 @@ function SearchModal({ close }: IClosePorps) {
           )}
         </SearchInputWrapper>
         <div>
-          <Button type="button" onClick={onClickSearchBtn}>
+          <Button
+            type="button"
+            onClick={onClickSearchBtn}
+            style={{ color: "black" }}
+          >
             검색하기
           </Button>
           <Button
@@ -128,7 +132,11 @@ function SearchModal({ close }: IClosePorps) {
             음성검색 {listening ? "on" : "off"}
           </Button>
 
-          <Button type="button" onClick={() => close(false)}>
+          <Button
+            type="button"
+            onClick={() => close(false)}
+            style={{ color: "black" }}
+          >
             취소하기
           </Button>
         </div>
