@@ -65,7 +65,7 @@ function Editor({ content, setContent }: IContentProps) {
         container: [
           [{ header: [1, 2, 3, false] }],
           ["bold", "italic", "underline", "strike"],
-          ["blockquote", "code"],
+          ["blockquote", "code-block"],
           [
             { list: "ordered" },
             { list: "bullet" },
@@ -103,7 +103,7 @@ function Editor({ content, setContent }: IContentProps) {
           "underline",
           "strike",
           "blockquote",
-          "code",
+          "code-block",
           "list",
           "bullet",
           "indent",
