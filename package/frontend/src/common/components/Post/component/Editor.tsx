@@ -103,6 +103,7 @@ function Editor({ content, setContent }: IContentProps) {
           "underline",
           "strike",
           "blockquote",
+          "code",
           "list",
           "bullet",
           "indent",
