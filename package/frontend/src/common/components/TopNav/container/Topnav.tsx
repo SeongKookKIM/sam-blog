@@ -14,7 +14,9 @@ function TopNav() {
     <>
       <Nav>
         <Div>
-          <p onClick={toggleSearchModal}>검색</p>
+          <p onClick={toggleSearchModal} style={{ cursor: "pointer" }}>
+            검색
+          </p>
           <Link to="/write">글작성</Link>
         </Div>
       </Nav>
