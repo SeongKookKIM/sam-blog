@@ -19,9 +19,9 @@
 
 항상 프로젝트를 진행하면서 새로운 기술을 배우고 적용을 했지만, 해결 방법이나 정보를 제대로 정리하지 않고 GitHub에 코드를 올려 다시 찾을 때 어려움을 많이 겪었습니다..그래서 블로그로 내용을 정리를 해야겠다 마음을 먹은 찰나 블로그를 만들어보는 것도 재미있겠다는 생각이 문득 들어 만들었습니다.
 
-Client: [https://www.sam-blog.site/](https://www.sam-blog.site/)
-Server: [https://www.sam-blog-server.site/](https://www.sam-blog-server.site/)
-Blog: [Project Blog](https://www.sam-blog.site/detail/Blog%20Project)
+Client: [https://www.sam-blog.site/](https://www.sam-blog.site/){: target="\_blank"}
+Server: [https://www.sam-blog-server.site/](https://www.sam-blog-server.site/){: target="\_blank"}
+Blog: [Project Blog](https://www.sam-blog.site/subjectList/Project){: target="\_blank"}
 
 ## Getting Started
 
@@ -45,4 +45,4 @@ Blog: [Project Blog](https://www.sam-blog.site/detail/Blog%20Project)
 
 ## 상세내용
 
-상세내용은 [블로그](https://www.sam-blog.site/detail/Blog%20Project)를 참조해주시면 감사합니다.!
+상세내용은 [블로그](https://www.sam-blog.site/subjectList/Project){: target="\_blank"}를 참조해주시면 감사합니다.!
