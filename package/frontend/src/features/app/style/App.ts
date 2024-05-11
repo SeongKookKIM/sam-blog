@@ -18,6 +18,7 @@ export const Main = styled.main`
 
 export const Content = styled.article`
   width: 100%;
+  min-width: 320px;
   height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;

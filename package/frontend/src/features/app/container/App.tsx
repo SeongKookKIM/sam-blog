@@ -23,39 +23,41 @@ function App() {
   });
 
   return (
-    <Main>
-      {/* Menu */}
-      <Menu />
-      <Content>
-        {/* 상단 Bar */}
-        <TopNav />
-        {/* 본문 Router */}
-        <Suspense
-          fallback={
-            <div
-              style={{
-                width: "100%",
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <span>페이지 로딩중입니다.</span>
-            </div>
-          }
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/write" element={<Write />} />
-            <Route path="/subjectList/:id" element={<SubjectPost />} />
-            <Route path="/search/:term" element={<Search />} />
-            <Route path="/detail/:title" element={<PostDetail />} />
-            <Route path="/write/edit" element={<Write />} />
-          </Routes>
-        </Suspense>
-      </Content>
-    </Main>
+    <>
+      <Main>
+        {/* Menu */}
+        <Menu />
+        <Content>
+          {/* 상단 Bar */}
+          <TopNav />
+          {/* 본문 Router */}
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  width: "100%",
+                  height: "100vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <span>페이지 로딩중입니다.</span>
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/write" element={<Write />} />
+              <Route path="/subjectList/:id" element={<SubjectPost />} />
+              <Route path="/search/:term" element={<Search />} />
+              <Route path="/detail/:title" element={<PostDetail />} />
+              <Route path="/write/edit" element={<Write />} />
+            </Routes>
+          </Suspense>
+        </Content>
+      </Main>
+    </>
   );
 }
 

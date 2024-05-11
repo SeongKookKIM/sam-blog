@@ -14,7 +14,7 @@ function TopNav() {
     <>
       <Nav>
         <Div>
-          <a onClick={toggleSearchModal}>검색</a>
+          <p onClick={toggleSearchModal}>검색</p>
           <Link to="/write">글작성</Link>
         </Div>
       </Nav>
