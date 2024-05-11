@@ -4,7 +4,7 @@ import { TSubjectData } from "../types/subjectData";
 //1. 주제 추가
 const addSubject = (subjectData: TSubjectData) => {
   const result = axios.post(
-    "https://sam-blog-server.vercel.app/write/addTitle",
+    "https://www.sam-blog-server.site/write/addTitle",
     subjectData,
   );
   return result;

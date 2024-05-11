@@ -18,7 +18,7 @@ function Menu() {
   //   useQuery로 Subject 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "title",
-    "https://sam-blog-server.vercel.app/write/postTitle",
+    "https://www.sam-blog-server.site/write/postTitle",
   );
 
   // Subject State
@@ -46,7 +46,7 @@ function Menu() {
       for (const subject of data?.data[0].subjectList || []) {
         try {
           const response = await axios.post(
-            "https://sam-blog-server.vercel.app/menu/subjectCount",
+            "https://www.sam-blog-server.site/menu/subjectCount",
             {
               subjectName: subject,
             },

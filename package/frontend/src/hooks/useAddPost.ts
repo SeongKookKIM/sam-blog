@@ -3,7 +3,7 @@ import { TPostType } from "../types/postType";
 
 const addPost = async (postData: TPostType) => {
   const result = await axios.post(
-    "https://sam-blog-server.vercel.app/write/addPost",
+    "https://www.sam-blog-server.site/write/addPost",
     postData,
   );
 

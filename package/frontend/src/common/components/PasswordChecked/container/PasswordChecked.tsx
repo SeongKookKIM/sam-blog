@@ -19,10 +19,7 @@ function PasswordChecked() {
   const mutation = useMutation({
     mutationFn: (password: TPasswordType) => {
       return axios
-        .post(
-          "https://sam-blog-server.vercel.app/write/passwordChcked",
-          password,
-        )
+        .post("https://www.sam-blog-server.site/write/passwordChcked", password)
         .then((res) => {
           //비밀번호 확인 알림
           alert(res.data);

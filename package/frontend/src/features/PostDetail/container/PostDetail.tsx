@@ -34,7 +34,7 @@ function PostDetail() {
   const handlerPostDelete = () => {
     if (window.confirm("게시물을 삭제 하시겠습니까?")) {
       axios
-        .delete("https://sam-blog-server.vercel.app/post/delete", {
+        .delete("https://www.sam-blog-server.site/post/delete", {
           data: itemLocation.state.post,
         })
         .then((res) => {

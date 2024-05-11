@@ -118,19 +118,35 @@ function SearchModal({ close }: IClosePorps) {
           >
             검색하기
           </Button>
-          <Button
-            type="button"
-            style={{
-              backgroundColor: listening ? "#96ccfe" : "white",
-              color: listening ? "white" : "black",
-              border: listening ? "1px solid white" : "1px solid black",
-            }}
-            onClick={() => {
-              SpeechRecognition.startListening();
-            }}
-          >
-            음성검색 {listening ? "on" : "off"}
-          </Button>
+          {listening ? (
+            <Button
+              type="button"
+              style={{
+                backgroundColor: listening ? "#96ccfe" : "white",
+                color: listening ? "white" : "black",
+                border: listening ? "1px solid white" : "1px solid black",
+              }}
+              onClick={() => {
+                SpeechRecognition.stopListening();
+              }}
+            >
+              음성 중지
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              style={{
+                backgroundColor: listening ? "#96ccfe" : "white",
+                color: listening ? "white" : "black",
+                border: listening ? "1px solid white" : "1px solid black",
+              }}
+              onClick={() => {
+                SpeechRecognition.startListening();
+              }}
+            >
+              음성검색 {listening ? "on" : "off"}
+            </Button>
+          )}
 
           <Button
             type="button"

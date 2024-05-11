@@ -8,6 +8,8 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+import "vite/modulepreload-polyfill";
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

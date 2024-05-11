@@ -13,7 +13,7 @@ function PostList({ subject }: ISubjectPropsType) {
   //   useQuery로 Post(All) 데이터 가져오기
   const { data, isLoading, isError, error } = useFetchQuery(
     "AllPostList",
-    "https://sam-blog-server.vercel.app/home/postList",
+    "https://www.sam-blog-server.site/home/postList",
   );
   const [postList, setPostList] = useState<TPostType[]>([]);
 
