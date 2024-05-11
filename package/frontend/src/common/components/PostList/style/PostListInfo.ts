@@ -15,6 +15,7 @@ export const List = styled.li`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding: 5px 0;
   }
   div {
     display: flex;
