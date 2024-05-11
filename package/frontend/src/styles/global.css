@@ -51,3 +51,10 @@ button {
   font-family: "Noto Sans KR", sans-serif !important;
   font-style: normal !important;
 }
+@media (max-width: 650px) {
+  .ql-editor > pre {
+    width: 100% !important;
+    font-size: clamp(12px, 1vw, 14px) !important;
+    white-space: pre-wrap;
+  }
+}
