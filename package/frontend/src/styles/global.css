@@ -14,6 +14,7 @@ button {
 /* react-quill 에디터 높이 */
 .ql-editor {
   min-height: 500px;
+  max-height: 700px;
   padding: 30px 10px !important;
 }
 @media (max-width: 900px) {
