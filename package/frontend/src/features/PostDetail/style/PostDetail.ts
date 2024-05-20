@@ -46,6 +46,10 @@ export const PostDetailInfo = styled.div`
 export const PostContentBox = styled.div`
   width: 100%;
   margin-top: 20px;
+
+  &.ql-editor {
+    max-height: none;
+  }
   @media (max-width: 900px) {
     img {
       width: 100%;

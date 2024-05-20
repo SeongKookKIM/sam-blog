@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const CheckedWrapper = styled.div`
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100) - 60px;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  height: 860px;
   padding: 30px;
   display: flex;
   justify-content: center;
