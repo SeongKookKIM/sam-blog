@@ -18,9 +18,11 @@
 
 이 블로그 프로젝트를 통해 지속적으로 기술을 습득하고, 효율적으로 기록할 수 있는 플랫폼을 구축하게 되었습니다.
 
-서비스 링크: <a href="https://www.sam-blog.site/" target="_blank">https://www.sam-blog.site/</a>
-서버 링크: <a href="https://www.sam-blog-server.site/" target="_blank">https://www.sam-blog-server.site/</a>
-블로그 링크: <a href="https://www.sam-blog.site/subjectList/Project" target="_blank">https://www.sam-blog.site/subjectList/Project</a>
+<p>서비스 링크: <a href="https://www.sam-blog.site/" target="_blank">https://www.sam-blog.site/</a></p>
+
+<p>서버 링크: <a href="https://www.sam-blog-server.site/" target="_blank">https://www.sam-blog-server.site/</a></p>
+
+<p>블로그 링크: <a href="https://www.sam-blog.site/subjectList/Project" target="_blank">https://www.sam-blog.site/subjectList/Project</a></p>
 
 ### [`글작성 권한 Password`]
 
