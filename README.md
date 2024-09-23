@@ -239,4 +239,4 @@ const queryClient = new QueryClient();
 }
 ```
 
-보다 정확하고 다른 문제는 [블로그](https://www.sam-blog.site/detail/Blog%20Project)를 참조해주세요.
+보다 정확하고 다른 문제는 [블로그](https://www.sam-blog.site/subjectList/Project)를 참조해주세요.
