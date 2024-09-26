@@ -3,9 +3,9 @@ import { Content, Main } from "../style/App";
 import { Suspense, lazy, useEffect } from "react";
 import Menu from "../../../common/components/Menu/container/Menu";
 import TopNav from "../../../common/components/TopNav/container/Topnav";
+import Home from "../../Home/container/Home";
 
 // Lazy Import
-const Home = lazy(() => import("../../Home/container/Home"));
 const Write = lazy(() => import("../../Write/container/Write"));
 const SubjectPost = lazy(
   () => import("../../SubjectPost/container/SubjectPost"),
